@@ -1,0 +1,218 @@
+AULA 2 27/06/23
+
+1. Faça um programa que peça a idade do usuário e imprima se ele é maior ou menor de 18 anos.
+
+idade = int(input("Digite a sua idade: "))
+if (idade > 18):
+    print("Você é maior de 18 anos.")
+elif (idade < 18):
+    print("Você é menor de 18 anos.")
+else:
+    print("Você tem 18 anos.")
+	
+	
+2) Faça um programa em python que peça um número e mostre se ele é positivo ou negativo. Alternativa: acrescentar nulo
+numero = float(input("Digite um número: "))
+if numero > 0:
+    print("O número é positivo.")
+elif numero < 0:
+    print("O número é negativo.")
+else:
+    print("O número é nulo.")
+	
+	
+3) Faça um programa que peça dois números e mostre o maior deles.
+num1 = float(input("Digite o primeiro número: "))
+num2 = float(input("Digite o segundo número: "))
+if num1 > num2:
+    print("O maior número é:", num1)
+elif num2 > num1:
+    print("O maior número é:", num2)
+else:
+  print(f"Os números {num1} e {num2} são iguais")
+  
+ 
+4) Faça um programa que leia a validade das informações:
+      "a. Idade: entre 0 e 150;
+      "b. Salário: maior que 0;
+      "c. Sexo: M, F ou Outro;
+    O programa deve imprimir uma mensagem de erro para cada informação inválida.
+	
+idade = int(input("Digite a idade: "))
+salario = float(input("Digite o salário: "))
+sexo = input("Digite o sexo (M, F ou Outro): ")
+
+if idade < 0 or idade > 150:
+    print("Erro: Idade inválida.")
+else:
+    print(f"A idade {idade} é válida.")
+
+if salario <= 0:
+    print("Erro: Salário inválido.")
+else:
+    print(f"O salário {salario} é válido.")
+
+if sexo == 'M':
+    print("Sexo: Masculino")
+elif sexo == 'F':
+    print("Sexo: Feminino")
+elif (sexo == 'Outro') or (sexo == 'outro'):
+    print("Sexo: Outro")
+else:
+    print("Erro: Sexo inválido.")
+	
+	
+5) Escreva um programa que peça a nota de 3 provas de um aluno e verifique se ele passou ou não de ano.
+    Obs.: O aluno irá passar de ano se sua média for maior que 6.
+nota1 = float(input("Digite a nota da primeira prova: "))
+nota2 = float(input("Digite a nota da segunda prova: "))
+nota3 = float(input("Digite a nota da terceira prova: "))
+
+media = (nota1 + nota2 + nota3) / 3
+
+if (media > 6):
+    print("Aprovado, média = {:,.2f}".format(media))
+else:
+    print("Reprovado, média = {:,.2f}".format(media))
+	
+
+6) Faça um programa que mostre uma questão de múltipla escolha com 5 opções (letras a, b, c, d, e).
+Sabendo a resposta certa, o programa deve receber a opção do usuário e informar a letra que o usuário marcou e se a resposta está certa ou errada.
+
+print("Qual é o melhor time e mais querido do Brasil?")
+opcao = input("a) Flamengo\nb) Corinthians\nc) Bahia\nd) Grêmio\ne) Atlético Mineiro\n")
+resposta = "a"
+
+if opcao == resposta:
+    print("Você acertou! O melhor e mais querido time do Brasil é o Flamengo.")
+elif opcao in ['b', 'c', 'd', 'e', 'B', 'C','D', 'E']:
+    print("Você errou! A resposta correta é a letra (", resposta + " ) Flamengo.")
+else:
+    print("Opção inválida.")
+	
+
+7) Vamos fazer um programa para verificar quem é o assassino de um crime. Para descobrir o assassino, a polícia faz um pequeno questionário com 5 perguntas onde a resposta só pode ser sim ou não:
+1. Mora perto da vítima?\n",
+2. Já trabalhou com a vítima?\n",
+3. Telefonou para a vítima?\n",
+4. Esteve no local do crime?\n",
+5. Devia para a vítima?\n",
+Cada resposta sim dá um ponto para o suspeito. A polícia considera que os suspeitos com 5 pontos são os assassinos, com 4 a 3 pontos são cúmplices e 2 pontos são apenas suspeitos, necessitando outras investigações. Valores iguais ou abaixo de 1 são liberados.
+
+print("-----------------------")
+print("  PMRJ - QUESTIONÁRIO")
+print("-----------------------")
+pontos = 0
+resp1 = input("1. Mora perto da vítima? (s/n): ")
+if resp1 == "s" or resp1 == "S":
+    pontos += 1
+elif resp1 != "n" and resp1 != "N":
+    print("Resposta inválida!")
+
+resp2 = input("2. Já trabalhou com a vítima? (s/n): ")
+if resp2 == "s" or resp2 == "S":
+    pontos += 1
+elif resp2 != "n" and resp2 != "N":
+    print("Resposta inválida!")
+
+resp3 = input("3. Telefonou para a vítima? (s/n): ")
+if resp3 == "s" or resp3 == "S":
+    pontos += 1
+elif resp3 != "n" and resp3 != "N":
+    print("Resposta inválida!")
+
+resp4 = input("4. Esteve no local do crime? (s/n): ")
+if resp4 == "s" or resp4 == "S":
+    pontos += 1
+elif resp4 != "n" and resp4 != "N":
+    print("Resposta inválida!")
+
+resp5 = input("5. Devia para a vítima? (s/n): ")
+if resp5 == "s" or resp5 == "S":
+    pontos += 1
+elif resp5 != "n" and resp5 != "N":
+    print("Resposta inválida!")
+
+if pontos == 5:
+    print("O suspeito é considerado o assassino.")
+elif pontos >= 3:
+    print("O suspeito é considerado cúmplice.")
+elif pontos == 2:
+    print("O suspeito é apenas suspeito e necessita de outras investigações.")
+else:
+    print("O suspeito está liberado.")
+
+
+
+8) Um produto vai sofrer aumento de acordo com a Tabela 1 abaixo. Faça um programa que peça para o usuário digitar o valor do produto de acordo com o preço antigo e escreva uma das mensagens da Tabela 2, de acordo com o preço reajustado:
+    "Tabela 1\n",
+    "\n",
+    "| Preço Antigo         | % de aumento |\n",
+    "|----------------------|--------------|\n",
+    "| Até 50 reais         | 5%           |\n",
+    "| Entre 50 e 100 reais | 10%          |\n",
+    "| De 100 a 150 reais   | 13%          |\n",
+    "| Acima de 150 reais   | 15%          |\n",
+    "\n",
+    "Tabela 2\n",
+    "\n",
+    "| Preço Novo            | Mensagem   |\n",
+    "|-----------------------|------------|\n",
+    "| Até 80 reais          | Barato     |\n",
+    "| Entre 80 e 115 reais  | Razoável   |\n",
+    "| Entre 115 e 150 reais | Normal     |\n",
+    "| Entre 150 e 170 reais | Caro       |\n",
+    "| Acima de 170 reais    | Muito Caro |"
+	
+print("Tabela 1")
+print("| Preço Antigo         | % de aumento |")
+print("|----------------------|--------------|")
+print("| Até 50 reais         | 5%           |")
+print("| Entre 50 e 100 reais | 10%          |")
+print("| De 100 a 150 reais   | 13%          |")
+print("| Acima de 150 reais   | 15%          |\n")
+
+print("Tabela 2")
+print("| Preço Novo            | Mensagem   |")
+print("|-----------------------|------------|")
+print("| Até 80 reais          | Barato     |")
+print("| Entre 80 e 115 reais  | Razoável   |")
+print("| Entre 115 e 150 reais | Normal     |")
+print("| Entre 150 e 170 reais | Caro       |")
+print("| Acima de 170 reais    | Muito Caro |\n")
+
+preco_antigo = float(input("Digite o valor do produto (em reais): "))
+
+if preco_antigo <= 50:
+    aumento = 5
+elif preco_antigo <= 100:
+    aumento = 10
+elif preco_antigo <= 150:
+    aumento = 13
+else:
+    aumento = 15
+
+preco_novo = preco_antigo + (preco_antigo * aumento / 100)
+
+print("O preço anterior do produto era de R$", preco_antigo)
+print("O preço reajustado do produto é de R$", preco_novo)
+
+print("Mensagem: O preço do produto é ")
+if preco_novo <= 80:
+    print("Barato")
+elif preco_novo <= 115:
+    print("Razoável")
+elif preco_novo <= 150:
+    print("Normal")
+elif preco_novo <= 170:
+    print("Caro")
+else:
+    print("Muito Caro")
+
+
+9) Desafio 1 - Faça um programa que leia 3 números e informe o maior deles.
+
+num1 = float(input("Digite o primeiro número: "))
+num2 = float(input("Digite o segundo número: "))
+num3 = float(input("Digite o terceiro número: "))
+print("O maior número é:", max(num1, num2, num3))

@@ -1,0 +1,984 @@
+Delivered-To: tonysdefreitas@gmail.com
+Received: by 2002:a05:7011:290:b0:35e:2f37:bd88 with SMTP id he16csp655602mdb;
+        Thu, 1 Jun 2023 10:55:27 -0700 (PDT)
+X-Received: by 2002:a0d:d8c9:0:b0:55d:626c:b62f with SMTP id a192-20020a0dd8c9000000b0055d626cb62fmr9622483ywe.51.1685642127534;
+        Thu, 01 Jun 2023 10:55:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685642127; cv=none;
+        d=google.com; s=arc-20160816;
+        b=riVC0UgDKpnH3qGyjE7PdsaN/I8k3DgLILf3fc5g1mc7SeA/ufo21bq5m/OLd7vpIu
+         H8QTSFVfI+T0unRzmbalhoc/AopJB1saTYsDuUu2AE5v+Cc1APKak3+1JsekdEkxM8SN
+         23PrKuzoAkuCC4NPRj4H5eaKys+Z35zR2z2g4mTuQYUBCGcwheec5S7RFiu9zx5pJXoS
+         uoAiwwApgBPhuVjSWXoL2cwj6nsUuKNWJ8RMo5uW6s29CmW5QzbrNlZhUTE6dfVxsSKm
+         TjSzGfJUZKudeRZ1Ifckm2qpf4J7jCdKfQOpLRYhi2z0BAxpBgK3MiTC2VNEnDY8dzwy
+         038Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version
+         :dkim-signature:dkim-signature;
+        bh=4At5FFx6fuM5g9GAu+V2vmMktLIVgYZBrELA9z17Vvg=;
+        b=WjkOkwKozhTlTBZi1Tm+F1fVdM3EwCSQDIakuR39p77Hu0blcVb8il4gQ5Hbp+mmfC
+         9IOXwfQHCYwWXH3M+ckQgzkNYZSMD4QOBPA4nW9HXxPRrpih7ne09bc2vjjbnUgfxlfm
+         PmD/UDfUjrmVjfra4lLxOOD5ljye8ng7LIzTOlUkMFYKAR0v+QEc+hML5nEhca3FqeIf
+         GFOCP42b78cbX/+PSNvuAwSOkBQjOEIjG7fBe/McWZ80iRWPVGmV8aTw7I6qgyiMy3+/
+         T7EdI20xwxMcetS7oBt8cm056LAKd9TLYe4bEC82T1/zRiA+w+sNxQI3sZe9yHc4L8oA
+         nuRg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=N+21NlLB;
+       dkim=pass header.i=@ada-tech.20221208.gappssmtp.com header.s=20221208 header.b="YgA/zUAg";
+       spf=neutral (google.com: 209.85.220.73 is neither permitted nor denied by domain of processo.seletivo@ada.tech) smtp.mailfrom=processo.seletivo@ada.tech
+Return-Path: <processo.seletivo@ada.tech>
+Received: from mail-sor-f73.google.com (mail-sor-f73.google.com. [209.85.220.73])
+        by mx.google.com with SMTPS id 190-20020a8119c7000000b0056898c01a33sor3679512ywz.0.2023.06.01.10.55.27
+        for <tonysdefreitas@gmail.com>
+        (Google Transport Security);
+        Thu, 01 Jun 2023 10:55:27 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.73 is neither permitted nor denied by domain of processo.seletivo@ada.tech) client-ip=209.85.220.73;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=N+21NlLB;
+       dkim=pass header.i=@ada-tech.20221208.gappssmtp.com header.s=20221208 header.b="YgA/zUAg";
+       spf=neutral (google.com: 209.85.220.73 is neither permitted nor denied by domain of processo.seletivo@ada.tech) smtp.mailfrom=processo.seletivo@ada.tech
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1685642127; x=1688234127;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=4At5FFx6fuM5g9GAu+V2vmMktLIVgYZBrELA9z17Vvg=;
+        b=N+21NlLBnnv0UiToLtXNH82+agbSYd/5bPWUh5ShUASZNY/u/GJI8Gy/D+Wx4ejfLC
+         bat6M+xfa4n61hVSzbT0R07naIJg0cATopzG6nj1JNlea1gEuMz1CUHoOD2JiHx9RaOt
+         20PwiOfJE9/8VKpOMMWPMpXHklY2QeUqJMDx4TKv4ZvvvFGOTcDrx7c54RFD+fvx4FXX
+         0f9w4AhqRIcHwWKsGT0WBzvPCU2p2F2je4YZKmPs6i+cOy+lAhcLXR8tbncTEJ43KvFw
+         1VbHSmUmBxXjycXZdIUIx8T4hLBozYsWV2v2u1Y3cpntF501mXGQWrarh4ttvwddmT3G
+         CZHw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ada-tech.20221208.gappssmtp.com; s=20221208; t=1685642127; x=1688234127;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=4At5FFx6fuM5g9GAu+V2vmMktLIVgYZBrELA9z17Vvg=;
+        b=YgA/zUAgo3K3IOJvXFWXVWLrVH39jny+ndj82wvprv9qn/ctpI8H5iS2lxn7Cyxbar
+         7pzsGN4zUETGkO1XKbFgnl4OqiXtAX56SebKUaO+BjfYUk+zXXSIocEI+hr2U5GTVuJd
+         rTW7d08QcyT5hMLz1HeCLVxSqfUtk+ODIQ4tse80XSeyjghH4QIT1h2qsoXm+Xbzygey
+         41kAZOUog85FexsHksNPlX3gQQ8TYCtawp5q+AIxTV+9ekyo9Kh311uV0BoGIf5MrMf7
+         YalB6OYn/RUoeEdLDjRAwCJWDBSYtW6Nn5y1r6OH+cWhpLfVcZjRY/UkwsY/xAZjaGHh
+         tkEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685642127; x=1688234127;
+        h=to:from:subject:date:message-id:sender:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4At5FFx6fuM5g9GAu+V2vmMktLIVgYZBrELA9z17Vvg=;
+        b=N1+6O8BbAJ8fDgOF66kiMcCDP96UCjj2kRKwos/dcoiieE1KW8ITKOR6XTheTOLg5c
+         Y1nt0z5VUXHwvADa+GoM55jZKSfWNzGv7XB+NTDJ1uNgHs7+f/XqOBLnCgeQbnSxOZqQ
+         OYa+3iBZgmU3gmgF1lLuGz5w0V1Plh4XWo/RTBmD3XVtaByqO/KHIb1ixkU74X1Vr2Hv
+         7uY1SWH/5xWp1sFk3AQV/AbRsb5+PrW4s1lLsdIFHQBzMBSNh8hnCj6n6mLB1sDIex5W
+         DSkDWy5w6r83AoKLN0coPZphnR3K3Cx5936h+35f1az1SdAs1Ya0Jg6Db4/0fdLqOzNR
+         J5/w==
+X-Gm-Message-State: AC+VfDyjTuDs3tAGkZ1UxGZjGee+jEHZcJlpHxCX2INw5VI7yAAcu//Z
+	sjq9uY+FEPc60ezGITLeYLUcpi8tuSJ1QCaa60b72+53xOMiEsc=
+X-Google-Smtp-Source: ACHHUZ7kSOYpMqAN+hK2fatQ4LWsI+C41z/DYj9YntYUVdOaVB0QUSXfAjqHlvg9GylxQ1iKbRMQsfMRMf7c4zfN/qcE
+MIME-Version: 1.0
+X-Received: by 2002:a25:1ed7:0:b0:ba8:1f20:ff4f with SMTP id
+ e206-20020a251ed7000000b00ba81f20ff4fmr391016ybe.12.1685642127151; Thu, 01
+ Jun 2023 10:55:27 -0700 (PDT)
+Reply-To: processo.seletivo@ada.tech
+Sender: Google Agenda <calendar-notification@google.com>
+Message-ID: <calendar-9a517467-efdf-4de5-b166-e608db001d25@google.com>
+Date: Thu, 01 Jun 2023 17:55:27 +0000
+Subject: Convite de remetente desconhecido: DE - Santander Coders | Cases |
+ Slot 23 - ter. 13 jun. 2023 15:30 - 16:00 (BRT) (tonysdefreitas@gmail.com)
+From: processo.seletivo@ada.tech
+To: tonysdefreitas@gmail.com
+Content-Type: multipart/mixed; boundary="000000000000352fdc05fd152440"
+
+--000000000000352fdc05fd152440
+Content-Type: multipart/alternative; boundary="000000000000352fd905fd15243e"
+
+--000000000000352fd905fd15243e
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+UmVtZXRlbnRlIGRlc2NvbmhlY2lkbw0KRXN0ZSBldmVudG8gZGUgcHJvY2Vzc28uc2VsZXRpdm9A
+YWRhLnRlY2ggc8OzIHZhaSBhcGFyZWNlciBuYSBzdWEgYWdlbmRhIHNlICANCnZvY8OqIGNvbmZp
+cm1hciBxdWUgY29uaGVjZSBxdWVtIGVudmlvdSBvIGNvbnZpdGUuDQpWb2PDqiBjb25oZWNlIGVz
+dGUgcmVtZXRlbnRlPyAgDQpodHRwczovL2NhbGVuZGFyLmdvb2dsZS5jb20vY2FsZW5kYXIvbWFy
+a3NlbmRlcmFza25vd24/bWFya19zZW5kZXJfYXNfa25vd249Q2hoMGIyNTVjMlJsWm5KbGFYUmhj
+MEJuYldGcGJDNWpiMjBTT2sxWFRqSmhTRm95WVZoR2FFOUhWWGhqUkVVelRrUlpNVnBZV21sTlJF
+SnlUV3BSWjJSSE9YVmxXRTVyV2xkYWVWcFhiREJaV0U1QllsRWFHbkJ5YjJObGMzTnZMbk5sYkdW
+MGFYWnZRR0ZrWVM1MFpXTm8mbWFya19zZW5kZXJfYXNfa25vd25fc2lnPUFMWUVUWXN3UlFJZ0Fr
+ZVhDU1dBcHl1TnV0YjZDUnk4a2tISW0wTTBUbHQ0c080bGdwc2dTa0VDSVFDODl5TjFTUXhsZGZR
+anJfNWNzb0Q3eGVIa0ZFSHcxUDlTYnFleXdJVFJmdyZjdG9rPWRHOXVlWE5rWldaeVpXbDBZWE5B
+WjIxaGFXd3VZMjl0JmVzPTENCg0KREUgLSBTYW50YW5kZXIgQ29kZXJzIHwgQ2FzZXMgfCBTbG90
+IDIzDQp0ZXLDp2EtZmVpcmEgMTMganVuLiAyMDIzIOKLhSAxNTozMCDigJMgMTY6MDANCkhvcsOh
+cmlvIFBhZHLDo28gZGUgQnJhc8OtbGlhIC0gU8OjbyBQYXVsbw0KDQpFbnRyYXIgY29tIG8gR29v
+Z2xlIE1lZXQNCmh0dHBzOi8vbWVldC5nb29nbGUuY29tL2F0ZS1menBtLW5wbz9ocz0yMjQNCg0K
+DQoJDQpQYXJ0aWNpcGFyIHBvciB0ZWxlZm9uZQ0KKEJSKSArNTUgNTEgNDU2MC03NzQyDQpOw7pt
+ZXJvIGRlIGlkZW50aWZpY2HDp8OjbyBwZXNzb2FsIChQSU4pOiAyODQ1MTQwMzANCg0KTWFpcyBu
+w7ptZXJvcyBkZSB0ZWxlZm9uZQ0KaHR0cHM6Ly90ZWwubWVldC9hdGUtZnpwbS1ucG8/cGluPTg0
+OTgwMDY0MjEzMTEmaHM9MA0KDQoNCk8gZXZlbnRvIGRlIGNhc2VzIGNvbnNpc3RlIGVtIGR1YXMg
+cGFydGVzOg0KDQpBcHJlc2VudGHDp8OjbyBpbmRpdmlkdWFsOiBRdWVyZW1vcyB0ZSBjb25oZWNl
+ciEgUG9ydGFudG8sIHZlbmhhIHByZXBhcmFkbyAgDQpwYXJhIG5vcyBjb250YXIgdW0gcG91Y28g
+ZGUgc3VhIHRyYWpldMOzcmlhIHBlc3NvYWwsIGFjYWTDqm1pY2EgZSAgDQpwcm9maXNzaW9uYWws
+IGFmaW5hbCDDqSBpbXBvcnRhbnRlIGVudGVuZGVybW9zIG8gcXVlIHRlIG1vdGl2YSBuZXNzYSBq
+b3JuYWRhICANCmNvbSBhIGdlbnRlOw0KDQpEaXNjdXNzw6NvIGRlIGNhc2U6IEFwcmVzZW50YXJl
+bW9zIHVtIHByb2JsZW1hIHF1ZSBkZXZlcsOhIHNlciByZXNvbHZpZG8gY29tICANCm8gZ3J1cG8g
+ZGUgY2FuZGlkYXRvcyBwcmVzZW50ZXMuIMOJIGltcG9ydGFudGUgcXVlIHZvY8OqIGVzdGVqYSBi
+ZW0gZW5nYWphZG8sICANCnBvaXMgYXZhbGlhcmVtb3Mgc3VhcyBoYWJpbGlkYWRlcyBlIGNvbXBl
+dMOqbmNpYXMgcmVsYWNpb25hZGFzIMOgIGNvbGFib3Jhw6fDo28gIA0KZSBjb25mcm9udG8uDQoN
+Ck9yZ2FuaXphZG9yDQpwcm9jZXNzby5zZWxldGl2b0BhZGEudGVjaA0KcHJvY2Vzc28uc2VsZXRp
+dm9AYWRhLnRlY2gNCg0KUmVzcG9uZGEgcGFyYSB0b255c2RlZnJlaXRhc0BnbWFpbC5jb20gZSB2
+ZWphIG1haXMgZGV0YWxoZXMgIA0KaHR0cHM6Ly9jYWxlbmRhci5nb29nbGUuY29tL2NhbGVuZGFy
+L2V2ZW50P2FjdGlvbj1WSUVXJmVpZD1NV04yYUhaMmFYRmhPR1V4Y0RFM05EWTFaWFppTURCck1q
+UWdkRzl1ZVhOa1pXWnlaV2wwWVhOQWJRJnRvaz1NallqY0hKdlkyVnpjMjh1YzJWc1pYUnBkbTlB
+WVdSaExuUmxZMmczWkRObU16ZG1OamMxWW1aaU1HRmpOR1ZsTXpjd09EUTRaREV5WVdJMk5tWmlZ
+VGcxTVRnMSZjdHo9QW1lcmljYSUyRlNhb19QYXVsbyZobD1wdF9CUiZlcz0xDQpTdWEgcGFydGlj
+aXBhw6fDo28gw6kgb3BjaW9uYWwuDQoNCn5+Ly9+fg0KQ29udml0ZSBkbyBHb29nbGUgQWdlbmRh
+OiBodHRwczovL2NhbGVuZGFyLmdvb2dsZS5jb20vY2FsZW5kYXIvDQoNClZvY8OqIHJlY2ViZXUg
+ZXN0ZSBlLW1haWwgcG9ycXVlIGVzdMOhIG5hIGxpc3RhIGRlIGNvbnZpZGFkb3MgZG8gZXZlbnRv
+LiBQYXJhICANCm7Do28gcmVjZWJlciBhcyBwcsOzeGltYXMgYXR1YWxpemHDp8O1ZXMsIHJlY3Vz
+ZSBvIGV2ZW50by4NCg0KU2Ugdm9jw6ogZW5jYW1pbmhhciBlc3RlIGNvbnZpdGUsIGEgcGVzc29h
+IHF1ZSByZWNlYsOqLWxvIHBvZGVyw6EgbW9kaWZpY2FyICANCnN1YSByZXNwb3N0YSBkZSBSU1ZQ
+LCByZXNwb25kZXIgYW8gb3JnYW5pemFkb3IsIHNlciBhZGljaW9uYWRhIMOgIGxpc3RhIGRlICAN
+CmNvbnZpZGFkb3Mgb3UgY29udmlkYXIgYWxndcOpbSwgcXVhbHF1ZXIgcXVlIHNlamEgbyBzdGF0
+dXMgZG8gY29udml0ZS4NCg0KU2FpYmEgbWFpcyBodHRwczovL3N1cHBvcnQuZ29vZ2xlLmNvbS9j
+YWxlbmRhci9hbnN3ZXIvMzcxMzUjZm9yd2FyZGluZw0K
+--000000000000352fd905fd15243e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:=
+schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offi=
+ce"><head><title></title><!--[if !mso]><meta http-equiv=3D"X-UA-Compatible"=
+ content=3D"IE=3Dedge"><![endif]--><meta http-equiv=3D"Content-Type" conten=
+t=3D"text/html; charset=3DUTF-8"><meta name=3D"viewport" content=3D"width=
+=3Ddevice-width,initial-scale=3D1"><meta name=3D"color-scheme" content=3D"l=
+ight dark"><meta name=3D"supported-color-schemes" content=3D"light dark">
+    <style>
+      body, html {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+
+      #outlook a {
+        padding: 0;
+      }
+
+      .ReadMsgBody {
+        width: 100%;
+      }
+
+      .ExternalClass {
+        width: 100%;
+      }
+
+      .ExternalClass * {
+        line-height: 100%;
+      }
+
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+      }
+
+      p {
+        display: block;
+        margin: 13px 0;
+      }
+    </style>
+    <!--[if !mso]><!-->
+    <style>
+      @media only screen and (max-width:580px) {
+        @-ms-viewport {
+          width: 320px;
+        }
+
+        @viewport {
+          width: 320px;
+        }
+      }
+    </style>
+    <!--<![endif]-->
+    <!--[if mso]>
+          <xml>
+          <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+          </o:OfficeDocumentSettings>
+          </xml>
+          <![endif]-->
+    <!--[if lte mso 11]>
+          <style>
+            .outlook-group-fix { width:100% !important; }
+          </style>
+    <![endif]-->
+
+    <!--[if !mso]><!-- -->
+  <style>body, html {font-family:Roboto,Helvetica,Arial,sans-serif;}@font-f=
+ace {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxP.ttf) forma=
+t('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) f=
+ormat('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) f=
+ormat('truetype');
+}
+@font-face {
+  font-family: 'Material Icons Extended';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/s/materialiconsextended/v149/kJEjBvgX7BgnkSr=
+UwT8UnLVc38YydejYY-oE_LvM.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Google Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/s/googlematerialicons/v137/Gw6kwdfw6UnXLJCcm=
+afZyFRXb3BL9rvi0QZG3g.otf) format('opentype');
+}
+
+.google-material-icons {
+  font-family: 'Google Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+@font-face {
+  font-family: 'Google Material Icons Filled';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/s/googlematerialiconsfilled/v113/WWXFlimHYg6=
+HKI3TavMkbKdhBmDvgach8TVpeGsuueSZJH4.otf) format('opentype');
+}
+
+.google-material-icons-filled {
+  font-family: 'Google Material Icons Filled';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owps=
+.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLU94Yt=
+zCwM.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLV154t=
+zCwM.ttf) format('truetype');
+}
+</style><!--<![endif]-->
+      <style>
+        .body-container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      </style>
+ =20
+      <style>
+        u+.body .body-container,
+        body[data-outlook-cycle] .body-container,
+        #MessageViewBody .body-container {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      </style>
+ =20
+    <style>
+      @media only screen and (min-width:580px) {
+        .column-per-37 {
+          width: 37% !important;
+          max-width: 37%;
+        }
+
+        .column-per-63 {
+          width: 63% !important;
+          max-width: 63%;
+        }
+      }
+    </style>
+ =20
+    <style>
+      .appointment-buttons th {
+        display: block;
+        clear: both;
+        float: left;
+        margin-top: 12px;
+      }
+
+      .appointment-buttons th a {
+        float: left;
+      }
+
+      #MessageViewBody .appointment-buttons th {
+       margin-top: 24px;
+      }
+    </style>
+ =20
+    <style>
+      @media only screen and (max-width:580px) {
+        table.full-width-mobile {
+          width: 100% !important;
+        }
+
+        td.full-width-mobile {
+          width: auto !important;
+        }
+      }
+    </style>
+    <style>
+      .main-container-inner,
+      .info-bar-inner {
+        padding: 12px 16px !important;
+      }
+
+      .main-column-table-ltr {
+        padding-right: 0 !important;
+      }
+
+      .main-column-table-rtl {
+        padding-left: 0 !important;
+      }
+
+      @media only screen and (min-width:580px) {
+        .main-container-inner {
+          padding: 24px 32px !important;
+        }
+
+        .info-bar-inner {
+          padding: 12px 32px !important;
+        }
+
+        .main-column-table-ltr {
+          padding-right: 32px !important;
+        }
+
+        .main-column-table-rtl {
+          padding-left: 32px !important;
+        }
+
+        .appointment-buttons th {
+          display: table-cell;
+          clear: none;
+        }
+      }
+
+      .primary-text {
+        color: #3c4043 !important;
+      }
+
+      .secondary-text,
+      .phone-number a {
+        color: #70757a !important;
+      }
+
+      .accent-text {
+        color: #1a73e8 !important;
+      }
+
+      .accent-text-dark {
+        color: #185abc !important;
+      }
+
+      .grey-button-text,
+      .attachment-chip a {
+        color: #5f6368 !important;
+      }
+
+      .primary-button {
+        background-color: #1a73e8 !important;
+      }
+
+      .primary-button-text {
+        color: #fff !important;
+      }
+
+      .underline-on-hover:hover {
+        text-decoration: underline !important;
+      }
+
+      .grey-infobar-text {
+        color: #202124 !important;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .primary-text:not([class^=3D"x_"]) {
+          color: #e8eaed !important;
+        }
+
+        .secondary-text:not([class^=3D"x_"]),
+        .phone-number:not([class^=3D"x_"]) a {
+          color: #9aa0a6 !important;
+        }
+
+        .grey-button-text:not([class^=3D"x_"]),
+        .attachment-chip:not([class^=3D"x_"]) a {
+          color: #bdc1c6 !important;
+        }
+
+        .accent-text:not([class^=3D"x_"]),
+        .hairline-button-text:not([class^=3D"x_"]) {
+          color: #8ab4f8 !important;
+        }
+
+        .primary-button:not([class^=3D"x_"]) {
+          background-color: #8ab4f8 !important;
+        }
+
+        .primary-button-text:not([class^=3D"x_"]) {
+          color: #202124 !important;
+        }
+      }
+    </style>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        .cse-banner:not([class^=3D"x_"]) {
+          background-color: #3c4043 !important; /* Google Grey 800 */
+        }
+
+        .encryption-icon:not([class^=3D"x_"]) {
+          /* WARNING: This causes the whole style tag to get stripped in Gm=
+ail. */
+          background-image: url('https://fonts.gstatic.com/s/i/googlemateri=
+aliconsfilled/encrypted/v3/gm_grey200-24dp/2x/gm_filled_encrypted_gm_grey20=
+0_24dp.png') !important;
+        }
+      }
+    </style>
+    <!--[if !mso]><!-->
+    <style>
+      .prevent-link a {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+    </style>
+    <!--<![endif]-->
+
+    <!--[if mso | IE]>
+      <style>
+        .main-container-inner {
+          padding: 24px 32px !important;
+        }
+
+        .info-bar-inner {
+          padding: 12px 32px !important;
+        }
+
+        .cse-banner .encryption-icon {
+          /* We use the IE workaround instead. */
+          background-image: none !important;
+        }
+
+        .cse-banner .encryption-icon .ms-fallback {
+          display: block !important;
+        }
+
+        /* NB: Some MS clients ignore dark-scheme styling and apply their o=
+wn, so there's nothing we can do to help there. */
+        @media (prefers-color-scheme: dark) {
+          .cse-banner:not([class^=3D"x_"]) .encryption-icon .ms-fallback {
+            display: none !important;
+          }
+
+          .cse-banner:not([class^=3D"x_"]) .encryption-icon .ms-fallback-da=
+rk {
+            display: block !important;
+          }
+        }
+      </style>
+    <![endif]-->
+  </head><body class=3D"body"><span itemscope itemtype=3D"http://schema.org=
+/InformAction"><span itemprop=3D"object" itemscope itemtype=3D"http://schem=
+a.org/Event"><meta itemprop=3D"eventStatus" content=3D"http://schema.org/Ev=
+entScheduled"/><span itemprop=3D"publisher" itemscope itemtype=3D"http://sc=
+hema.org/Organization"><meta itemprop=3D"name" content=3D"Google Calendar"/=
+></span><meta itemprop=3D"eventId/googleCalendar" content=3D"1cvhvviqa8e1p1=
+7465evb00k24"/><span style=3D"display: none; font-size: 1px; color: #fff; l=
+ine-height: 1px; height: 0; max-height: 0; width: 0; max-width: 0; opacity:=
+ 0; overflow: hidden;" itemprop=3D"name">DE - Santander Coders | Cases | Sl=
+ot 23</span><meta itemprop=3D"url" content=3D"https://calendar.google.com/c=
+alendar/event?action=3DVIEW&amp;eid=3DMWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgd=
+G9ueXNkZWZyZWl0YXNAbQ&amp;tok=3DMjYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDN=
+mMzdmNjc1YmZiMGFjNGVlMzcwODQ4ZDEyYWI2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_P=
+aulo&amp;hl=3Dpt_BR&amp;es=3D1"/><span aria-hidden=3D"true"><time itemprop=
+=3D"startDate" datetime=3D"20230613T183000Z"></time><time itemprop=3D"endDa=
+te" datetime=3D"20230613T190000Z"></time></span><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" align=3D"center" style=
+=3D"width:100%;" class=3D"body-container"><tbody><tr><td style=3D"" class=
+=3D"" align=3D"left"><!--[if mso | IE]><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation"><tr><td height=3D"16" style=3D"he=
+ight:16px;"><![endif]--><div style=3D"height:16px;" aria-hidden=3D"true"> &=
+nbsp; </div><!--[if mso | IE]></td></tr></table><![endif]--><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" align=3D"c=
+enter" style=3D"width:100%;" class=3D""><tbody><tr><td style=3D"background-=
+color: #e8eaed;;color: #202124;padding: 12px 32px; border-radius: 8px;font-=
+family: Roboto, sans-serif;font-size: 14px; line-height: 20px;text-align: l=
+eft;" class=3D"info-bar-inner"><span style=3D"font-weight: 700;">Remetente =
+desconhecido</span><br/><span style=3D"font-family: Roboto, sans-serif;font=
+-size: 14px; line-height: 20px;">Este evento de <a class=3D"grey-infobar-te=
+xt underline-on-hover" style=3D"display: inline-block;;color: #202123; text=
+-decoration: none; display: initial;" href=3D"mailto:processo.seletivo@ada.=
+tech">processo.seletivo@ada.tech</a> s=C3=B3 vai aparecer na sua agenda se =
+voc=C3=AA confirmar que conhece quem enviou o convite.</span><br/><a class=
+=3D"accent-text-dark underline-on-hover" style=3D"display: inline-block;;co=
+lor: #185abc; text-decoration: none;font-weight: 700;" href=3D"https://cale=
+ndar.google.com/calendar/marksenderasknown?mark_sender_as_known=3DChh0b255c=
+2RlZnJlaXRhc0BnbWFpbC5jb20SOk1XTjJhSFoyYVhGaE9HVXhjREUzTkRZMVpYWmlNREJyTWpR=
+Z2RHOXVlWE5rWldaeVpXbDBZWE5BYlEaGnByb2Nlc3NvLnNlbGV0aXZvQGFkYS50ZWNo&amp;ma=
+rk_sender_as_known_sig=3DALYETYswRgIhAIww2583UJJGOG4rocYaN0J-1dJatNQLF11l60=
+KjidDbAiEAgvQi7mUWvU7VIndo_qV3_IKGs5yuB8q0BK9RDEIP-zM&amp;ctok=3DdG9ueXNkZW=
+ZyZWl0YXNAZ21haWwuY29t&amp;es=3D1" target=3D"_blank">Voc=C3=AA conhece este=
+ remetente?</a></td></tr></tbody></table><!--[if mso | IE]><table border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td heigh=
+t=3D"12" style=3D"height:12px;"><![endif]--><div style=3D"height:12px;" ari=
+a-hidden=3D"true"> &nbsp; </div><!--[if mso | IE]></td></tr></table><![endi=
+f]--><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" align=3D"center" style=3D"width:100%;" class=3D""><tbody><tr><td st=
+yle=3D"border: solid 1px #dadce0; border-radius: 8px; direction: rtl; font-=
+size: 0; padding: 24px 32px; text-align: left; vertical-align: top;" class=
+=3D"main-container-inner"><!--[if mso | IE]><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><![endif]--><!--[if mso =
+| IE]><td class=3D"" style=3D"vertical-align:top;width:37%;" ><![endif]--><=
+div class=3D"column-per-37 outlook-group-fix" style=3D"font-size: 13px; tex=
+t-align: left; direction: ltr; display: inline-block; vertical-align: top; =
+width: 100%;overflow: hidden; word-wrap: break-word;"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tb=
+ody><tr><td style=3D"vertical-align:top;padding:0;"><table border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tr><=
+td style=3D"font-size: 0; padding: 0; text-align: left; word-break: break-w=
+ord;;padding-bottom:28px;"><a href=3D"https://meet.google.com/ate-fzpm-npo?=
+hs=3D224" class=3D"primary-button-text" style=3D"display: inline-block;font=
+-family: &#39;Google Sans&#39;, Roboto, sans-serif;font-size: 14px; letter-=
+spacing: 0.25px; line-height: 20px; mso-line-height-rule: exactly; text-dec=
+oration: none; text-transform: none; word-wrap: break-word; white-space: no=
+wrap;color: #fff;font-weight: 700;white-space: normal;" target=3D"_blank"><=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation=
+" style=3D"display: inline-block"><tr><td align=3D"center" role=3D"presenta=
+tion" valign=3D"middle" style=3D"background-color: #1a73e8; cursor: auto; p=
+adding: 10px 25px; border: none; border-radius: 4px; margin: 0;" class=3D"p=
+rimary-button"><!--[if mso]><a href=3D"https://meet.google.com/ate-fzpm-npo=
+?hs=3D224" class=3D"primary-button-text" target=3D"_blank"><![endif]--><spa=
+n class=3D"primary-button-text" style=3D"font-family: &#39;Google Sans&#39;=
+, Roboto, sans-serif;font-size: 14px; letter-spacing: 0.25px; line-height: =
+20px; mso-line-height-rule: exactly; text-decoration: none; text-transform:=
+ none; word-wrap: break-word; white-space: nowrap;color: #fff;font-weight: =
+700;white-space: normal;">Entrar com o Google Meet</span><!--[if mso]></a><=
+![endif]--></td></tr></table></a></td></tr><tr><td style=3D"font-size: 0; p=
+adding: 0; text-align: left; word-break: break-word;;padding-bottom:24px;">=
+<div style=3D"font-family: Roboto, sans-serif;font-size: 14px; line-height:=
+ 20px; mso-line-height-rule: exactly; text-align: left;"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"paddin=
+g-bottom: 4px;"><tr><td><h2 class=3D"primary-text" style=3D"font-size: 14px=
+;color: #3c4043; text-decoration: none;font-weight: 700;-webkit-font-smooth=
+ing: antialiased;margin: 0; padding: 0;">Link para reuni=C3=A3o</h2></td></=
+tr></table><!-- Use grey text for the Meet link--><div><a style=3D"display:=
+ inline-block;;color: #70757a; text-decoration: none;" class=3D"secondary-t=
+ext underline-on-hover" href=3D"https://meet.google.com/ate-fzpm-npo?hs=3D2=
+24">meet.google.com/ate-fzpm-npo</a></div></div></td></tr><tr><td style=3D"=
+font-size: 0; padding: 0; text-align: left; word-break: break-word;;padding=
+-bottom:24px;"><div style=3D"font-family: Roboto, sans-serif;font-size: 14p=
+x; line-height: 20px; mso-line-height-rule: exactly; text-align: left;"><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"padding-bottom: 4px;"><tr><td><h2 class=3D"primary-text" style=3D"=
+font-size: 14px;color: #3c4043; text-decoration: none;font-weight: 700;-web=
+kit-font-smoothing: antialiased;margin: 0; padding: 0;">Participar por tele=
+fone</h2></td></tr></table><span class=3D"secondary-text" style=3D"color: #=
+70757a; text-decoration: none;;">(BR) </span><a href=3D"tel:+55-51-4560-774=
+2%3B284514030%23" style=3D"display: inline-block;color: #1a73e8; text-decor=
+ation: none;" target=3D"_blank" class=3D"accent-text underline-on-hover">+5=
+5 51 4560-7742</a> <br><span class=3D"secondary-text" style=3D"color: #7075=
+7a; text-decoration: none;;">N=C3=BAmero de identifica=C3=A7=C3=A3o pessoal=
+ (PIN): 284514030</span><br><br><a href=3D"https://tel.meet/ate-fzpm-npo?pi=
+n=3D8498006421311&amp;hs=3D0" style=3D"display: inline-block;color: #1a73e8=
+; text-decoration: none;" target=3D"_blank" class=3D"accent-text underline-=
+on-hover">Mais n=C3=BAmeros de telefone</a><br></div></td></tr></table></td=
+></tr></tbody></table></div><!--[if mso | IE]></td><![endif]--><!--[if mso =
+| IE]><td class=3D"" style=3D"vertical-align:top;width:63%;padding-right:32=
+px;" ><![endif]--><div class=3D"column-per-63 outlook-group-fix" style=3D"f=
+ont-size: 13px; text-align: left; direction: ltr; display: inline-block; ve=
+rtical-align: top; width: 100%;overflow: hidden; word-wrap: break-word;"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ width=3D"100%" class=3D"main-column-table-ltr" style=3D"padding-right: 32p=
+x; padding-left: 0;;table-layout: fixed;"><tbody><tr><td class=3D"main-colu=
+mn-td" style=3D"padding:0; vertical-align:top;"><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%" style=3D"=
+table-layout: fixed;"><tr><td style=3D"font-size: 0; padding: 0; text-align=
+: left; word-break: break-word;;padding-bottom:24px;"><div style=3D"font-fa=
+mily: Roboto, sans-serif;font-style: normal; font-weight: 400; font-size: 1=
+4px; line-height: 20px; letter-spacing: 0.2px;color: #3c4043; text-decorati=
+on: none;" class=3D"primary-text" role=3D"presentation"><span>O evento de c=
+ases consiste em duas partes:<p>Apresenta=C3=A7=C3=A3o individual: Queremos=
+ te conhecer! Portanto, venha preparado para nos contar um pouco de sua tra=
+jet=C3=B3ria pessoal, acad=C3=AAmica e profissional, afinal =C3=A9 importan=
+te entendermos o que te motiva nessa jornada com a gente;</p><p>Discuss=C3=
+=A3o de case: Apresentaremos um problema que dever=C3=A1 ser resolvido com =
+o grupo de candidatos presentes. =C3=89 importante que voc=C3=AA esteja bem=
+ engajado, pois avaliaremos suas habilidades e compet=C3=AAncias relacionad=
+as =C3=A0 colabora=C3=A7=C3=A3o e confronto.</p></span><meta itemprop=3D"de=
+scription" content=3D"O evento de cases consiste em duas partes:
+
+Apresenta=C3=A7=C3=A3o individual: Queremos te conhecer! Portanto, venha pr=
+eparado para nos contar um pouco de sua trajet=C3=B3ria pessoal, acad=C3=AA=
+mica e profissional, afinal =C3=A9 importante entendermos o que te motiva n=
+essa jornada com a gente;
+
+Discuss=C3=A3o de case: Apresentaremos um problema que dever=C3=A1 ser reso=
+lvido com o grupo de candidatos presentes. =C3=89 importante que voc=C3=AA =
+esteja bem engajado, pois avaliaremos suas habilidades e compet=C3=AAncias =
+relacionadas =C3=A0 colabora=C3=A7=C3=A3o e confronto."/></div></td></tr><t=
+r><td style=3D"font-size: 0; padding: 0; text-align: left; word-break: brea=
+k-word;;padding-bottom:24px;"><div style=3D"font-family: Roboto, sans-serif=
+;font-style: normal; font-weight: 400; font-size: 14px; line-height: 20px; =
+letter-spacing: 0.2px;color: #3c4043; text-decoration: none;" class=3D"prim=
+ary-text" role=3D"presentation"><span aria-hidden=3D"true"><time itemprop=
+=3D"startDate" datetime=3D"20230613T183000Z"></time><time itemprop=3D"endDa=
+te" datetime=3D"20230613T190000Z"></time></span><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"padding-bottom:=
+ 4px;"><tr><td><h2 class=3D"primary-text" style=3D"font-size: 14px;color: #=
+3c4043; text-decoration: none;font-weight: 700;-webkit-font-smoothing: anti=
+aliased;margin: 0; padding: 0;">Quando</h2></td></tr></table><span>ter=C3=
+=A7a-feira 13 jun. 2023 =E2=8B=85 15:30 =E2=80=93 16:00 (Hor=C3=A1rio Padr=
+=C3=A3o de Bras=C3=ADlia - S=C3=A3o Paulo)</span></div></td></tr><tr><td st=
+yle=3D"font-size: 0; padding: 0; text-align: left; word-break: break-word;;=
+padding-bottom:24px;"><div style=3D"font-family: Roboto, sans-serif;font-st=
+yle: normal; font-weight: 400; font-size: 14px; line-height: 20px; letter-s=
+pacing: 0.2px;color: #3c4043; text-decoration: none;" class=3D"primary-text=
+" role=3D"presentation"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"padding-bottom: 4px;"><tr><td><h2 cla=
+ss=3D"primary-text" style=3D"font-size: 14px;color: #3c4043; text-decoratio=
+n: none;font-weight: 700;-webkit-font-smoothing: antialiased;margin: 0; pad=
+ding: 0;">Organizador</h2></td></tr></table><div style=3D"color: #3c4042;">=
+<span class=3D"notranslate"><a class=3D"primary-text underline-on-hover" st=
+yle=3D"display: inline-block;;color: #3c4043; text-decoration: none;" href=
+=3D"mailto:processo.seletivo@ada.tech">processo.seletivo@ada.tech</a></span=
+><span itemprop=3D"organizer" itemscope itemtype=3D"http://schema.org/Perso=
+n"><meta itemprop=3D"name" content=3D"processo.seletivo@ada.tech"/><meta it=
+emprop=3D"email" content=3D"processo.seletivo@ada.tech"/></span></div></div=
+></td></tr><tr><td style=3D"font-size: 0; padding: 0; text-align: left; wor=
+d-break: break-word;;padding-bottom:24px;"><div style=3D"font-family: Robot=
+o, sans-serif;font-style: normal; font-weight: 400; font-size: 14px; line-h=
+eight: 20px; letter-spacing: 0.2px;color: #3c4043; text-decoration: none;" =
+class=3D"primary-text" role=3D"presentation"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"padding-bottom: 4p=
+x;"><tr><td><h2 class=3D"primary-text" style=3D"font-size: 14px;color: #3c4=
+043; text-decoration: none;font-weight: 700;-webkit-font-smoothing: antiali=
+ased;margin: 0; padding: 0;">Convidados</h2></td></tr></table>(A lista de c=
+onvidados foi ocultada por solicita=C3=A7=C3=A3o do organizador)</div></td>=
+</tr><tr><td style=3D"font-size: 0; padding: 0; text-align: left; word-brea=
+k: break-word;;padding-bottom:0px;"><div style=3D"color: #3c4043; text-deco=
+ration: none;;font-family: Roboto, sans-serif;font-size: 14px; line-height:=
+ 20px; mso-line-height-rule: exactly; text-align: left;" class=3D"primary-t=
+ext"><div><span style=3D"font-weight: 700;-webkit-font-smoothing: antialias=
+ed;">Responder</span><span class=3D"secondary-text" style=3D"color: #70757a=
+; text-decoration: none;"> para <a class=3D"secondary-text underline-on-hov=
+er" style=3D"display: inline-block;;color: #70757a; text-decoration: none;"=
+ href=3D"mailto:tonysdefreitas@gmail.com">tonysdefreitas@gmail.com</a></spa=
+n></div></div></td></tr><tr><td style=3D"font-size: 0; padding: 0; text-ali=
+gn: left; word-break: break-word;;padding-bottom:16px;"><div style=3D"font-=
+family: Roboto, sans-serif;font-size: 14px; line-height: 20px; mso-line-hei=
+ght-rule: exactly; text-align: left;"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" style=3D"border-collapse: separate=
+;"><tr><td style=3D"padding-top: 8px; padding-left: 0; padding-right: 12px;=
+"><!-- RSVP buttons --><table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"border: solid 1px #dadce0; border-radius=
+: 16px; border-collapse: separate;font-family: &#39;Google Sans&#39;, Robot=
+o, sans-serif;;display: inline-block;;margin-right: 12px; margin-left: 0;">=
+<tr><td align=3D"center" vertical-align=3D"middle" role=3D"presentation"><s=
+pan itemprop=3D"potentialaction" itemscope itemtype=3D"http://schema.org/Rs=
+vpAction"><meta itemprop=3D"attendance" content=3D"http://schema.org/RsvpAt=
+tendance/Yes"/><span itemprop=3D"handler" itemscope itemtype=3D"http://sche=
+ma.org/HttpActionHandler"><link itemprop=3D"method" href=3D"http://schema.o=
+rg/HttpRequestMethod/GET"/><span style=3D"color: #5f6367;"><a href=3D"https=
+://calendar.google.com/calendar/event?action=3DRESPOND&amp;eid=3DMWN2aHZ2aX=
+FhOGUxcDE3NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl0YXNAbQ&amp;rst=3D1&amp;tok=3DMjYj=
+cHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZiMGFjNGVlMzcwODQ4ZDEyYWI=
+2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=3Dpt_BR&amp;es=3D1" styl=
+e=3D"font-weight: 400;font-family: &#39;Google Sans&#39;, Roboto, sans-seri=
+f;color: #5f6368; font-size: 14px; line-height: 120%; mso-line-height-rule:=
+ exactly; margin: 0; text-decoration: none; text-transform: none;" class=3D=
+"grey-button-text" itemprop=3D"url" target=3D"_blank"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td align=3D"c=
+enter" role=3D"presentation" valign=3D"middle" style=3D"padding: 6px 0; pad=
+ding-left: 16px; padding-right: 12px; white-space: nowrap;"><!--[if mso]><a=
+ href=3D"https://calendar.google.com/calendar/event?action=3DRESPOND&amp;ei=
+d=3DMWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl0YXNAbQ&amp;rst=3D1&=
+amp;tok=3DMjYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZiMGFjNGVlM=
+zcwODQ4ZDEyYWI2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=3Dpt_BR&am=
+p;es=3D1" class=3D"grey-button-text" itemprop=3D"url" target=3D"_blank"><![=
+endif]--><span class=3D"grey-button-text" style=3D"font-weight: 400;font-fa=
+mily: &#39;Google Sans&#39;, Roboto, sans-serif;color: #5f6368; font-size: =
+14px; line-height: 120%; mso-line-height-rule: exactly; margin: 0; text-dec=
+oration: none; text-transform: none;">Sim</span><!--[if mso]></a><![endif]-=
+-></td></tr></table></a></span></span></span></td><td align=3D"center" vert=
+ical-align=3D"middle" role=3D"presentation" style=3D"border-left: solid 1px=
+ #dadce0; border-right: solid 1px #dadce0;"><span itemprop=3D"potentialacti=
+on" itemscope itemtype=3D"http://schema.org/RsvpAction"><meta itemprop=3D"a=
+ttendance" content=3D"http://schema.org/RsvpAttendance/No"/><span itemprop=
+=3D"handler" itemscope itemtype=3D"http://schema.org/HttpActionHandler"><li=
+nk itemprop=3D"method" href=3D"http://schema.org/HttpRequestMethod/GET"/><s=
+pan style=3D"color: #5f6367;"><a href=3D"https://calendar.google.com/calend=
+ar/event?action=3DRESPOND&amp;eid=3DMWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgdG9=
+ueXNkZWZyZWl0YXNAbQ&amp;rst=3D2&amp;tok=3DMjYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhL=
+nRlY2g3ZDNmMzdmNjc1YmZiMGFjNGVlMzcwODQ4ZDEyYWI2NmZiYTg1MTg1&amp;ctz=3DAmeri=
+ca%2FSao_Paulo&amp;hl=3Dpt_BR&amp;es=3D1" style=3D"font-weight: 400;font-fa=
+mily: &#39;Google Sans&#39;, Roboto, sans-serif;color: #5f6368; font-size: =
+14px; line-height: 120%; mso-line-height-rule: exactly; margin: 0; text-dec=
+oration: none; text-transform: none;" class=3D"grey-button-text" itemprop=
+=3D"url" target=3D"_blank"><table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation"><tr><td align=3D"center" role=3D"presentation=
+" valign=3D"middle" style=3D"padding: 6px 12px; white-space: nowrap;"><!--[=
+if mso]><a href=3D"https://calendar.google.com/calendar/event?action=3DRESP=
+OND&amp;eid=3DMWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl0YXNAbQ&am=
+p;rst=3D2&amp;tok=3DMjYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZ=
+iMGFjNGVlMzcwODQ4ZDEyYWI2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=
+=3Dpt_BR&amp;es=3D1" class=3D"grey-button-text" itemprop=3D"url" target=3D"=
+_blank"><![endif]--><span class=3D"grey-button-text" style=3D"font-weight: =
+400;font-family: &#39;Google Sans&#39;, Roboto, sans-serif;color: #5f6368; =
+font-size: 14px; line-height: 120%; mso-line-height-rule: exactly; margin: =
+0; text-decoration: none; text-transform: none;">N=C3=A3o</span><!--[if mso=
+]></a><![endif]--></td></tr></table></a></span></span></span></td><td align=
+=3D"center" vertical-align=3D"middle" role=3D"presentation"><span itemprop=
+=3D"potentialaction" itemscope itemtype=3D"http://schema.org/RsvpAction"><m=
+eta itemprop=3D"attendance" content=3D"http://schema.org/RsvpAttendance/May=
+be"/><span itemprop=3D"handler" itemscope itemtype=3D"http://schema.org/Htt=
+pActionHandler"><link itemprop=3D"method" href=3D"http://schema.org/HttpReq=
+uestMethod/GET"/><span style=3D"color: #5f6367;"><a href=3D"https://calenda=
+r.google.com/calendar/event?action=3DRESPOND&amp;eid=3DMWN2aHZ2aXFhOGUxcDE3=
+NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl0YXNAbQ&amp;rst=3D3&amp;tok=3DMjYjcHJvY2Vzc2=
+8uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZiMGFjNGVlMzcwODQ4ZDEyYWI2NmZiYTg1M=
+Tg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=3Dpt_BR&amp;es=3D1" style=3D"font-=
+weight: 400;font-family: &#39;Google Sans&#39;, Roboto, sans-serif;color: #=
+5f6368; font-size: 14px; line-height: 120%; mso-line-height-rule: exactly; =
+margin: 0; text-decoration: none; text-transform: none;" class=3D"grey-butt=
+on-text" itemprop=3D"url" target=3D"_blank"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td align=3D"center" rol=
+e=3D"presentation" valign=3D"middle" style=3D"padding: 6px 0; padding-left:=
+ 12px; padding-right: 16px; white-space: nowrap;"><!--[if mso]><a href=3D"h=
+ttps://calendar.google.com/calendar/event?action=3DRESPOND&amp;eid=3DMWN2aH=
+Z2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl0YXNAbQ&amp;rst=3D3&amp;tok=3D=
+MjYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZiMGFjNGVlMzcwODQ4ZDE=
+yYWI2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=3Dpt_BR&amp;es=3D1" =
+class=3D"grey-button-text" itemprop=3D"url" target=3D"_blank"><![endif]--><=
+span class=3D"grey-button-text" style=3D"font-weight: 400;font-family: &#39=
+;Google Sans&#39;, Roboto, sans-serif;color: #5f6368; font-size: 14px; line=
+-height: 120%; mso-line-height-rule: exactly; margin: 0; text-decoration: n=
+one; text-transform: none;">Talvez</span><!--[if mso]></a><![endif]--></td>=
+</tr></table></a></span></span></span></td></tr></table><!-- More options -=
+-><a href=3D"https://calendar.google.com/calendar/event?action=3DVIEW&amp;e=
+id=3DMWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl0YXNAbQ&amp;tok=3DM=
+jYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZiMGFjNGVlMzcwODQ4ZDEy=
+YWI2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=3Dpt_BR&amp;es=3D1" s=
+tyle=3D"display: inline-block;;font-weight: 400;font-family: &#39;Google Sa=
+ns&#39;, Roboto, sans-serif;color: #5f6368; font-size: 14px; line-height: 1=
+20%; mso-line-height-rule: exactly; margin: 0; text-decoration: none; text-=
+transform: none;" class=3D"grey-button-text" target=3D"_blank"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"=
+border: solid 1px #dadce0; border-radius: 16px; border-collapse: separate;f=
+ont-family: &#39;Google Sans&#39;, Roboto, sans-serif;"><tr><td align=3D"ce=
+nter" vertical-align=3D"middle" role=3D"presentation" style=3D"padding: 6px=
+ 0; padding-left: 16px; padding-right: 12px; white-space: nowrap;;color: #5=
+f6367;"><!--[if mso]><a href=3D"https://calendar.google.com/calendar/event?=
+action=3DVIEW&amp;eid=3DMWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjQgdG9ueXNkZWZyZWl=
+0YXNAbQ&amp;tok=3DMjYjcHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g3ZDNmMzdmNjc1YmZiM=
+GFjNGVlMzcwODQ4ZDEyYWI2NmZiYTg1MTg1&amp;ctz=3DAmerica%2FSao_Paulo&amp;hl=3D=
+pt_BR&amp;es=3D1" class=3D"grey-button-text" target=3D"_blank"><![endif]-->=
+<span class=3D"grey-button-text" style=3D"font-weight: 400;font-family: &#3=
+9;Google Sans&#39;, Roboto, sans-serif;color: #5f6368; font-size: 14px; lin=
+e-height: 120%; mso-line-height-rule: exactly; margin: 0; text-decoration: =
+none; text-transform: none;">Mais op=C3=A7=C3=B5es</span><!--[if mso]></a><=
+![endif]--></td></tr></table></a></td></tr></table></div></td></tr></table>=
+</td></tr></tbody></table></div><!--[if mso | IE]></td><![endif]--><!--[if =
+mso | IE]></tr></table><![endif]--></td></tr></tbody></table><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" align=3D"c=
+enter" style=3D"width:100%;" class=3D""><tbody><tr><td style=3D"font-size: =
+0; padding: 0; text-align: left; word-break: break-word;;padding:4px 12px;"=
+ class=3D"" align=3D"left"><div class=3D"secondary-text" style=3D"color: #7=
+0757a; text-decoration: none;font-family: Roboto, sans-serif;font-size: 12p=
+x; line-height: 16px; mso-line-height-rule: exactly; text-align: left;"><p>=
+Convite do <a href=3D"https://calendar.google.com/calendar/" class=3D"accen=
+t-text underline-on-hover" style=3D"font-family: Roboto, sans-serif;font-si=
+ze: 12px; line-height: 16px; mso-line-height-rule: exactly;;color: #1a73e8;=
+ text-decoration: none;" target=3D"_blank">Google Agenda</a></p><p>Voc=C3=
+=AA recebeu este e-mail porque se inscreveu nas notifica=C3=A7=C3=B5es do A=
+genda. Para n=C3=A3o receber mais mensagens semelhantes, acesse as <a href=
+=3D"https://calendar.google.com/calendar/r/settings" class=3D"accent-text u=
+nderline-on-hover" style=3D"font-family: Roboto, sans-serif;font-size: 12px=
+; line-height: 16px; mso-line-height-rule: exactly;;color: #1a73e8; text-de=
+coration: none;" target=3D"_blank">configura=C3=A7=C3=B5es do Agenda</a>, s=
+elecione esta agenda e mude a op=C3=A7=C3=A3o "Outras notifica=C3=A7=C3=B5e=
+s".</p><p>Se voc=C3=AA encaminhar este convite, a pessoa que receb=C3=AA-lo=
+ poder=C3=A1 modificar sua resposta de RSVP, responder ao organizador, ser =
+adicionada =C3=A0 lista de convidados ou convidar algu=C3=A9m, qualquer que=
+ seja o status do convite. <a class=3D"accent-text underline-on-hover" styl=
+e=3D"font-family: Roboto, sans-serif;font-size: 12px; line-height: 16px; ms=
+o-line-height-rule: exactly;;color: #1a73e8; text-decoration: none;" href=
+=3D"https://support.google.com/calendar/answer/37135#forwarding">Saiba mais=
+</a></p></div></td></tr></tbody></table></td></tr></tbody></table></span></=
+span></body></html>
+--000000000000352fd905fd15243e
+Content-Type: text/calendar; charset="UTF-8"; method=REQUEST
+Content-Transfer-Encoding: quoted-printable
+
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+X-LIC-LOCATION:America/Sao_Paulo
+BEGIN:STANDARD
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=3DAmerica/Sao_Paulo:20230613T153000
+DTEND;TZID=3DAmerica/Sao_Paulo:20230613T160000
+DTSTAMP:20230601T175527Z
+ORGANIZER;CN=3Dprocesso.seletivo@ada.tech:mailto:processo.seletivo@ada.tech
+UID:1cvhvviqa8e1p17465evb00k24@google.com
+ATTENDEE;CUTYPE=3DINDIVIDUAL;ROLE=3DREQ-PARTICIPANT;PARTSTAT=3DNEEDS-ACTION=
+;RSVP=3D
+ TRUE;CN=3Dtonysdefreitas@gmail.com;X-NUM-GUESTS=3D0:mailto:tonysdefreitas@=
+gmail
+ .com
+X-GOOGLE-CONFERENCE:https://meet.google.com/ate-fzpm-npo
+X-MICROSOFT-CDO-OWNERAPPTID:1840667074
+CREATED:20230522T194753Z
+DESCRIPTION:O evento de cases consiste em duas partes:\n\nApresenta=C3=A7=
+=C3=A3o indi
+ vidual: Queremos te conhecer! Portanto\, venha preparado para nos contar u=
+m
+  pouco de sua trajet=C3=B3ria pessoal\, acad=C3=AAmica e profissional\, af=
+inal =C3=A9 impo
+ rtante entendermos o que te motiva nessa jornada com a gente\;\n\nDiscuss=
+=C3=A3o
+  de case: Apresentaremos um problema que dever=C3=A1 ser resolvido com o g=
+rupo d
+ e candidatos presentes. =C3=89 importante que voc=C3=AA esteja bem engajad=
+o\, pois av
+ aliaremos suas habilidades e compet=C3=AAncias relacionadas =C3=A0 colabor=
+a=C3=A7=C3=A3o e conf
+ ronto.\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:=
+~
+ :~:~:~:~:~:~:~::~:~::-\nEntrar com o Google Meet: https://meet.google.com/=
+a
+ te-fzpm-npo\nOu disque: (BR) +55 51 4560-7742 PIN: 284514030#\nMais n=C3=
+=BAmeros
+  de telefone: https://tel.meet/ate-fzpm-npo?pin=3D8498006421311&hs=3D7\n\n=
+Saiba
+  mais sobre o Meet em: https://support.google.com/a/users/answer/9282720\n=
+\
+ nN=C3=A3o edite esta se=C3=A7=C3=A3o.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~=
+:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230601T175524Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:DE - Santander Coders | Cases | Slot 23
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
+
+--000000000000352fd905fd15243e--
+--000000000000352fdc05fd152440
+Content-Type: application/ics; name="invite.ics"
+Content-Disposition: attachment; filename="invite.ics"
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpQUk9ESUQ6LS8vR29vZ2xlIEluYy8vR29vZ2xlIENhbGVuZGFyIDcw
+LjkwNTQvL0VODQpWRVJTSU9OOjIuMA0KQ0FMU0NBTEU6R1JFR09SSUFODQpNRVRIT0Q6UkVRVUVT
+VA0KQkVHSU46VlRJTUVaT05FDQpUWklEOkFtZXJpY2EvU2FvX1BhdWxvDQpYLUxJQy1MT0NBVElP
+TjpBbWVyaWNhL1Nhb19QYXVsbw0KQkVHSU46U1RBTkRBUkQNClRaT0ZGU0VURlJPTTotMDMwMA0K
+VFpPRkZTRVRUTzotMDMwMA0KVFpOQU1FOi0wMw0KRFRTVEFSVDoxOTcwMDEwMVQwMDAwMDANCkVO
+RDpTVEFOREFSRA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpEVFNUQVJUO1RaSUQ9QW1l
+cmljYS9TYW9fUGF1bG86MjAyMzA2MTNUMTUzMDAwDQpEVEVORDtUWklEPUFtZXJpY2EvU2FvX1Bh
+dWxvOjIwMjMwNjEzVDE2MDAwMA0KRFRTVEFNUDoyMDIzMDYwMVQxNzU1MjdaDQpPUkdBTklaRVI7
+Q049cHJvY2Vzc28uc2VsZXRpdm9AYWRhLnRlY2g6bWFpbHRvOnByb2Nlc3NvLnNlbGV0aXZvQGFk
+YS50ZWNoDQpVSUQ6MWN2aHZ2aXFhOGUxcDE3NDY1ZXZiMDBrMjRAZ29vZ2xlLmNvbQ0KQVRURU5E
+RUU7Q1VUWVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
+QUNUSU9OO1JTVlA9DQogVFJVRTtDTj10b255c2RlZnJlaXRhc0BnbWFpbC5jb207WC1OVU0tR1VF
+U1RTPTA6bWFpbHRvOnRvbnlzZGVmcmVpdGFzQGdtYWlsDQogLmNvbQ0KWC1HT09HTEUtQ09ORkVS
+RU5DRTpodHRwczovL21lZXQuZ29vZ2xlLmNvbS9hdGUtZnpwbS1ucG8NClgtTUlDUk9TT0ZULUNE
+Ty1PV05FUkFQUFRJRDoxODQwNjY3MDc0DQpDUkVBVEVEOjIwMjMwNTIyVDE5NDc1M1oNCkRFU0NS
+SVBUSU9OOk8gZXZlbnRvIGRlIGNhc2VzIGNvbnNpc3RlIGVtIGR1YXMgcGFydGVzOlxuXG5BcHJl
+c2VudGHDp8OjbyBpbmRpDQogdmlkdWFsOiBRdWVyZW1vcyB0ZSBjb25oZWNlciEgUG9ydGFudG9c
+LCB2ZW5oYSBwcmVwYXJhZG8gcGFyYSBub3MgY29udGFyIHVtDQogIHBvdWNvIGRlIHN1YSB0cmFq
+ZXTDs3JpYSBwZXNzb2FsXCwgYWNhZMOqbWljYSBlIHByb2Zpc3Npb25hbFwsIGFmaW5hbCDDqSBp
+bXBvDQogcnRhbnRlIGVudGVuZGVybW9zIG8gcXVlIHRlIG1vdGl2YSBuZXNzYSBqb3JuYWRhIGNv
+bSBhIGdlbnRlXDtcblxuRGlzY3Vzc8Ojbw0KICBkZSBjYXNlOiBBcHJlc2VudGFyZW1vcyB1bSBw
+cm9ibGVtYSBxdWUgZGV2ZXLDoSBzZXIgcmVzb2x2aWRvIGNvbSBvIGdydXBvIGQNCiBlIGNhbmRp
+ZGF0b3MgcHJlc2VudGVzLiDDiSBpbXBvcnRhbnRlIHF1ZSB2b2PDqiBlc3RlamEgYmVtIGVuZ2Fq
+YWRvXCwgcG9pcyBhdg0KIGFsaWFyZW1vcyBzdWFzIGhhYmlsaWRhZGVzIGUgY29tcGV0w6puY2lh
+cyByZWxhY2lvbmFkYXMgw6AgY29sYWJvcmHDp8OjbyBlIGNvbmYNCiByb250by5cblxuLTo6fjp+
+Ojp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+
+On4NCiA6fjp+On46fjp+On46fjo6fjp+OjotXG5FbnRyYXIgY29tIG8gR29vZ2xlIE1lZXQ6IGh0
+dHBzOi8vbWVldC5nb29nbGUuY29tL2ENCiB0ZS1menBtLW5wb1xuT3UgZGlzcXVlOiAoQlIpICs1
+NSA1MSA0NTYwLTc3NDIgUElOOiAyODQ1MTQwMzAjXG5NYWlzIG7Dum1lcm9zDQogIGRlIHRlbGVm
+b25lOiBodHRwczovL3RlbC5tZWV0L2F0ZS1menBtLW5wbz9waW49ODQ5ODAwNjQyMTMxMSZocz03
+XG5cblNhaWJhDQogIG1haXMgc29icmUgbyBNZWV0IGVtOiBodHRwczovL3N1cHBvcnQuZ29vZ2xl
+LmNvbS9hL3VzZXJzL2Fuc3dlci85MjgyNzIwXG5cDQogbk7Do28gZWRpdGUgZXN0YSBzZcOnw6Nv
+LlxuLTo6fjp+Ojp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+DQog
+On46fjp+On46fjp+On46fjp+On46fjp+On46fjo6fjp+OjotDQpMQVNULU1PRElGSUVEOjIwMjMw
+NjAxVDE3NTUyNFoNCkxPQ0FUSU9OOg0KU0VRVUVOQ0U6MQ0KU1RBVFVTOkNPTkZJUk1FRA0KU1VN
+TUFSWTpERSAtIFNhbnRhbmRlciBDb2RlcnMgfCBDYXNlcyB8IFNsb3QgMjMNClRSQU5TUDpPUEFR
+VUUNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
+--000000000000352fdc05fd152440--

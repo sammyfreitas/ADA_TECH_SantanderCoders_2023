@@ -1,0 +1,304 @@
+Delivered-To: tonysdefreitas@gmail.com
+Received: by 2002:a05:7011:f47:b0:355:e82:382b with SMTP id hg7csp113408mdb;
+        Mon, 15 May 2023 18:36:14 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6jLGinkfZmrXYwC8cvMKXJ8xa/DvR17WDA/l7SoDsQvMsTAGkt/Oj47koLxomMxru+/M7t
+X-Received: by 2002:adf:dd87:0:b0:307:a52c:26b4 with SMTP id x7-20020adfdd87000000b00307a52c26b4mr15849802wrl.66.1684200974370;
+        Mon, 15 May 2023 18:36:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1684200974; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uFFvOhGZEy5BEiVlgdo0MjMP/wI8l1Du4zQ5m7gkl0Uk8PhQaqeWL/xMaSDN2LceQD
+         MlQPFUK6sXkAbUXf0xmu1wP+UPhDXit+JnTrj9URCho6Bs6TyfbYNKcHSaXZuQLSxTOD
+         LwOPlbcrJPygQ1XBkDrCkEB0P/d/A0Z1Vmi/oQgeVSOw7+KEvrcwy1JHXbMyilIm2X7o
+         tu7Lwp5atw0Zxh7/Xn0M/1VBu88lQYxszdZ+mBWw5041vBKVDS9c566lSZ8XRoFQrtmU
+         3aUjQZ8Np2YJWyWbptisXwH5PoRVjKP8JFIdE/y8N0GIaqMUmAn3gO6YRUoNSgs3x33k
+         lgPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:from:feedback-id:list-unsubscribe-post
+         :mime-version:content-transfer-encoding:origin-messageid:message-id
+         :subject:date:to:dkim-signature;
+        bh=cmuyS776lam1oHVjaof/JsU83QSZeHPZY5f4CnCXfpM=;
+        b=EUeK6Bnv695aehowlPv/7NwCMQH21qYcu8XI3xEUHH4/f1I8oBG4NehFBiKd8OKq7b
+         ZRrEfyztVyign5krrz0j8q7usIgUdBUa0+h+7ffHaK8rqDiQ2txROOwp2F6KZePtXwXN
+         77SG2wFFRsYYtd9OsmHkcap8GvPRQNgSE4fru8SJ21mQltEQxZ6/inK7wqtzsqYq13se
+         vWl8SxDCok2UH/Zdut7c5YGYVViVf9pJKZsoVcodMMPslYRp1veh7pqxLVyDzjLSxM1W
+         QcAs7oR8fWFjyuN/xqITmDyUrcPJOmrLoQp0Eg6lPrgLOdndMhT3Kar9c2ENKva7/9ZT
+         v6Sg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail.santander-grants.com header.s=sib2k header.b=cAqqzFN+;
+       spf=pass (google.com: domain of bounces-80792674-becas-santander=mail.santander-grants.com@m.universia.net designates 77.32.189.189 as permitted sender) smtp.mailfrom="bounces-80792674-becas-santander=mail.santander-grants.com@m.universia.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mail.santander-grants.com
+Return-Path: <bounces-80792674-becas-santander=mail.santander-grants.com@m.universia.net>
+Received: from m.universia.net (m.universia.net. [77.32.189.189])
+        by mx.google.com with ESMTPS id b17-20020adfe651000000b003070f7b7039si437529wrn.293.2023.05.15.18.36.14
+        for <tonysdefreitas@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 18:36:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces-80792674-becas-santander=mail.santander-grants.com@m.universia.net designates 77.32.189.189 as permitted sender) client-ip=77.32.189.189;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail.santander-grants.com header.s=sib2k header.b=cAqqzFN+;
+       spf=pass (google.com: domain of bounces-80792674-becas-santander=mail.santander-grants.com@m.universia.net designates 77.32.189.189 as permitted sender) smtp.mailfrom="bounces-80792674-becas-santander=mail.santander-grants.com@m.universia.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mail.santander-grants.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mail.santander-grants.com;
+ q=dns/txt; s=sib2k; bh=cmuyS776lam1oHVjaof/JsU83QSZeHPZY5f4CnCXfpM=;
+ h=from:subject:date:to:mime-version:content-type:content-transfer-encoding:list-unsubscribe:x-csa-complaints:list-unsubscribe-post;
+        b=cAqqzFN+2NV4n0vcTqQCZPQYyDW+FCaAGjRyHgcCx2F+WYxuRReAHqIvHf25J4jhAQKYDsFbWH3U
+        rNDheGEDb54bELhIITmSrvd8gZor4IMoCXp3i2NEvyMDljp4ZkizkBpt0DC0XbtThWw/6byDQhow
+        0U57F85Yyp6Es14ZEvxadzeurB8kRH+vYngmOOXwbVEIxw0Rz0auNK/DAjkYTW+gMrL9DRDLiPsI
+        5QVup4hls/n55iTezp6fktKFwZgy+hy9npL7GWs0j+AFvJ9rGE6f9tMNfVpKF+TQvf8xPJGSHbJa
+        tBkh9MeP+793wglBaOQ4WIt6K6ZTzdZmH0njPQ==
+Received: by smtp-relay.sendinblue.com with ESMTP id 18628ce6-f73e-4a26-b30a-946e4cded93c; Tue, 16 May 2023 01:36:13 +0000 (UTC)
+X-Mailin-EID: ODA3OTI2NzR%2BdG9ueXNkZWZyZWl0YXNAZ21haWwuY29tfjxkNzQ1YWY2Ny05ODE0LWRlODAtMWE5Mi01ZTExNjUwNmZiMmJAbWFpbC5zYW50YW5kZXItZ3JhbnRzLmNvbT5%2BbS51bml2ZXJzaWEubmV0
+To: <tonysdefreitas@gmail.com>
+Date: Tue, 16 May 2023 01:36:13 +0000
+Subject: =?UTF-8?Q?=C3=93timo,_voc=C3=AA_aceitou_a_bolsa_de_estudos_Bolsas_Santander_|_Santander_Coders_2023?=
+Message-Id: <18628ce6-f73e-4a26-b30a-946e4cded93c@smtp-relay.sendinblue.com>
+Origin-messageId: <d745af67-9814-de80-1a92-5e116506fb2b@mail.santander-grants.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-sib-id: ohpDycg2J7GXBy1v1eZMsKCF6EyY1yJtPJ1-0nj2dC4hHUie1DveqNpt31OrmXoavJJQmD3qyCwBljzEip1Jo1c1kd6A8Hvxdw3XsF9SEUtC0MWfJ7tB8iqxcudM3Kv8nBDB1AUTrlsVs6rgdISJotcsY71-BDzDpR5soITELrUSWsTXcdg
+X-CSA-Complaints: csa-complaints@eco.de
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-ID: 77.32.189.189:2308302_-1:2308302:Sendinblue
+From: "Becas Santander" <becas-santander@mail.santander-grants.com>
+List-Unsubscribe: <mailto:unsubscribe-t@m.universia.net?subject=unsub-ODA3OTI2NzR-dG9ueXNkZWZyZWl0YXNAZ21haWwuY29tfjxkNzQ1YWY2Ny05ODE0LWRlODAtMWE5Mi01ZTExNjUwNmZiMmJAbWFpbC5zYW50YW5kZXItZ3JhbnRzLmNvbT5-QmVjYXMgU2FudGFuZGVyIDxiZWNhcy1zYW50YW5kZXJAbWFpbC5zYW50YW5kZXItZ3JhbnRzLmNvbT5-MTg2MjhjZTYtZjczZS00YTI2LWIzMGEtOTQ2ZTRjZGVkOTNj&body=ODA3OTI2NzR-dG9ueXNkZWZyZWl0YXNAZ21haWwuY29tfjxkNzQ1YWY2Ny05ODE0LWRlODAtMWE5Mi01ZTExNjUwNmZiMmJAbWFpbC5zYW50YW5kZXItZ3JhbnRzLmNvbT5-QmVjYXMgU2FudGFuZGVyIDxiZWNhcy1zYW50YW5kZXJAbWFpbC5zYW50YW5kZXItZ3JhbnRzLmNvbT5-MTg2MjhjZTYtZjczZS00YTI2LWIzMGEtOTQ2ZTRjZGVkOTNj>, <https://r.m.universia.net/tr/un/li/NcQABAqDmmeDtOn1kjSGUtk9B7V3rYvQbxz2mzfquoGr6DnhDs-vn9VUGN1Ge5rcr42TpLe5EycD_QG2tr62PNTycBiMk5yGOWVFvNcqHMLYPOjSKvptPxv_7HMUg2-njgMTFAxeFVclGNaQ_GWGPY_lUyv0ZQA8WxmsErwmuasmLCVbuf4wpKA6v4xVm57SvI4RaNxJFYRDhxRTf86d9Qj1AOA5rPJ4oGwnxS6To8Kj8tAUYpZHqhwXTfk_yX3X0lqZjKSL7GVc9FonMHyOOCne>
+
+<!DOCTYPE html> <html xmlns=3D'http://www.w3.org/1999/xhtml' lang=3D'en'>  =
+<head>   <meta http-equiv=3D'Content-Type' content=3D'text/html; =
+charset=3DUTF-8' />   <title>Bienvenido a Santander Becas</title>   <meta =
+name=3D'viewport' content=3D'width=3Ddevice-width, initial-scale=3D1.0'/>  =
+ <meta http-equiv=3D'X-UA-Compatible' content=3D'IE=3DEdge'/> </head>  =
+<body style=3D'margin: 0; padding: 0;'>  <table align=3D'center' =
+border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=3D'width: 100%'>   =
+<tr>     <td style=3D'background-color: #f2f2f2;'>       <table =
+align=3D'center' border=3D'0' cellpadding=3D'0' cellspacing=3D'0' =
+width=3D'600'>         <!-- logo Santander Becas -->         <tr>          =
+ <td style=3D'background-color: #f2f2f2; padding: 26px 0 26px 10px;'>      =
+       <img src=3D=22https://img.m.universia.net/im/2308302/12423cd4db89b27=
+ee1657e358e63172aa0c193236090f41dfc7904ff5e157498.png=3Fe=3D4RC=5FLDcMifoUL=
+hcy=5FGkSzI1KqWq0NEb17w-uI3dHGSrZbDtVDbmGYIIIlok1EDOkaf=5FuE6GtIpv2wzhg6F7K=
+R3=5Fyg-mdeYcPooyoqBBs6Tbpi12cq3cjaU3UqafimlNvdAmgrHMKTyCfJypF3FM4H0rJamx6Z=
+pqvkEgVsYsa9CAJh2SWOE2QgOr5jRUoMjQTrcT-era20SbWqG3K6s5Rqj2XxE-aqkPyj7oBl7Tw=
+VGV-THLv5ARc6ZWGG=5FzATmH5euZySrQwZfvvqneHiPUrqM=5FmNmzf=22                =
+  alt=3D'header-logo' width=3D'200'>           </td>         </tr>         =
+ <!-- text -->         <tr style=3D'text-align: center;'>           <td =
+style=3D'background-color: #ffffff; padding: 32px 36px 40px 36px;'>       =
+<p style=3D'font-family: Arial,sans-serif; font-size: 24px; font-weight: =
+bold; padding-bottom: 22px'>    Ficamos muito felizes por ter aceitado!    =
+</p>                                          <p style=3D'font-family: =
+Arial,sans-serif; font-size: 18px; padding-bottom: 22px'>                  =
+ Ol=C3=A1, Anthony Samuel,                 </p>                            =
+                                      <p style=3D'font-family: Arial,=
+sans-serif; font-size: 18px; padding-bottom: 22px'>                   A =
+equipe das Bolsas Santander est=C3=A1 muito feliz pela bolsa de estudos =
+Bolsas Santander | Santander Coders 2023 ser oficialmente sua.             =
+    </p>                                                                  =
+<p style=3D'font-family: Arial,sans-serif; font-size: 18px; padding-bottom:=
+ 22px'>                   Parab=C3=A9ns, novamente!                 </p>   =
+                                                            <br>           =
+      <a style=3D'border-radius: 27.5px;                             =
+cursor: pointer;                             border: solid 1px #ec0000;    =
+                         color: #fff;                             =
+font-weight: bold;                             padding: 13px 26px;         =
+                    font-size: 16px;                             =
+font-style: normal;                             font-stretch: normal;      =
+                       line-height: 1.43;                             =
+letter-spacing: normal;                             text-align: center;    =
+                         font-family: Arial,sans-serif;                    =
+         text-decoration: none;                             =
+background-color: #ec0000;'                   href=3D=22https://r.m.=
+universia.net/tr/cl/zwtF2=5F1bELMcOcD9SwCrksT3N1L7JcZsS4CJ-n6euO-dXPlTz=5FJ=
+I-f4Je-BWhRl=5FPoON-7bvMD530sbSGPLmiUn4L5L4yxheHjAQ0MUo=5Fgh7uHXfJFhXJwEQf4=
+oksT1IGhZ7vG7dR52Xdb0rKHSJciq9iyvyQTZfVcCC-mCW391bQDp4N3PaXvd7dlDHvYFA-aUM8=
+hCFitP0MH6=5FccrhtZTRwHmvIqVbxJGMuwEDeiE8Ksdiun4KZt0RmcNZUh623DXIOOx4aRDsd3=
+GH8gz4ORtjhyLtxMeNZg8H1c9oYVWy42Iy-78ajrpZl0M=22 target=3D'=5Fblank'>      =
+             Entre na sua bolsa                 </a>                       =
+                                <p style=3D'margin-top: 25px; font-family: =
+Arial,sans-serif; font-size: 16px; line-height: 1.67; letter-spacing: 0.=
+6px; color: #000; text-align: center;font-weight: bold'>                 =
+N=C3=A3o faz mal nenhum se exibir um pouco... Compartilhe nas redes sociais=
+!<br>               </p>                        </td>                      =
+</tr>           <!-- blue banner -->         <tr>           <td =
+style=3D'background-color: #a7dfe9; text-align: right; position: relative;'=
+ height=3D'58px'>             <!-- users templates -->                <img =
+src=3D=22https://img.m.universia.net/im/2308302/7dc95dfe6ec9af0b7a4b31c699c=
+a203a419a88bf1fd857e22ec839ca5fc70b30.png=3Fe=3DQpuP2a0xpWbXOKhym4qEHgjOByr=
+UmLOUNxBeXxNuL6FUcyJIB-9cNMEdK2Xmp4TIrQgdDp2mFNc2d1Se2ZR56xnTA2=5FpQK4J25k1=
+Nm6R9WLakjX39eZVjD24fCnpfSc=5F8LYJvhoEB-7Lz5597B84d4irFufVQLo2fvdKvCwMw9Kna=
+7YaIbmWc1lA8-L=5F5aMu96miphMHt51nAhKpjC66qkgBYdLraHR6zJoHUIHiNGOrRsvjr7C9Fx=
+cYzBEcCVSFZD9hTTqyx9JUBQekJm3qd31GNif7NWDOyHE1Hi5Zo3Bkmniazt2XIA=22        =
+            style=3D'margin-top: -68px; position: relative; float: right;' =
+alt=3D'apply=5Faccepted' width=3D'100'>            </td>         </tr>     =
+     <!-- social media -->         <tr>           <td =
+style=3D'background-color: #f2f2f2; text-align: center; padding: 30px 0;'> =
+            <!-- instagram -->             <div style=3D'display: =
+inline-flex; border: 1px solid #000; border-radius: 50%; padding: 8px; =
+cursor: pointer; margin-right: 15px;'>               <a =
+aria-label=3D'Instagram de Santander Becas' style=3D'display: flex !=
+important;'                  href=3D=22https://r.m.universia.=
+net/tr/cl/z0XTWn5keoJxq2Tc2Rwy3SArFwwzcXEvkjnZ4UvHuNTeiKXK4sY5vr7gWROkMHIT8=
+rnCd-bBEcDFNRu-oP-r=5FjwGShvrNsVqamFG8vLPeg6txqCK1lL43OWoIyrppjOWTkojh-NkSc=
+TJPchTle9PD5bDv-Dw4ZVMgfPQYMc2RkKwKXmf2BqAXNyNLAMNBbsjye9lp=5F6=5FkbuEG8gVd=
+jufrGxMvVpaSLUpVWHjMV-ESS75qw=22                  rel=3D'noreferrer' =
+target=3D'=5Fblank'>                 <img height=3D'18' =
+src=3D=22https://img.m.universia.net/im/2308302/63460b3bda51edc5856b12fdcb9=
+66ec9378f7b4901f97a62e2b0431d89c0889d.png=3Fe=3D5wRzUskxZz3zbMeqyPIKvcp9vPX=
+o0wmBLHFxM3MVXzgJWuar-m9cEpmxb3=5Ful9wDohG1aBMXrvjUUs2h0-AtMNZXseQTVZys88O6=
+JK7Dqiix=5FnVzKkP=5FRNhWyQiSnns4-yrRy4XPSG9pylfsZI62O=5Fs4OZ7DxKF6YHzd-pmjT=
+D6zqtlKCRZ45ExqMddi9savuRdvJLDGpRqpZd8DEgia1w2vTEyt27h36NnFqDai66qs6wtSRoBO=
+TCxtfzwIKfmDwG3Ylpgcnso70ov8x0m66eAdodGegd5KpEKcgXCTcNEJzp=5F4otUf013gohUXn=
+0w=22                      alt=3D'Instagram de Santander Becas'>           =
+    </a>             </div>              <!-- twitter -->             <div =
+style=3D'display: inline-flex; border: 1px solid #000; border-radius: 50%; =
+padding: 8px; cursor: pointer; margin-right: 15px;'>               <a =
+aria-label=3D'Twitter de Santander Becas' style=3D'display: flex !=
+important;'                  href=3D=22https://r.m.universia.=
+net/tr/cl/q5b66kLoWdYvD8NuU1y150IVRWz=5F2U88UTYX6RIY68VQmv64xb5zrqqQVm2lg0r=
+apzBzxvmtmUZ6YOujUPWktwKPrMt5MAxZnemRcMv01iWKvr5OQCFWFMRz5wDFSFK8Yl7SdgDYWu=
+LAy546cZSIMCKD1uz3AKUTj1hqvuTfTwXMz3MIOhgNoyDIIqGU1aVvfHs6HVjfQuf3GLRwZsOiV=
+2CThekPkHGqgA=22                  rel=3D'noreferrer' target=3D'=5Fblank'>  =
+               <img height=3D'18' src=3D=22https://img.m.universia.=
+net/im/2308302/0e8bdf15c039d058791d5291951576507dbcca2c3eedef81d72847f82113=
+ac8c.png=3Fe=3DoOUpRKXz5=5FOEN9C3SZ9YM5yuUd6Nhvt7kOFyShKY9qxuKhBMcTwisdZ3xM=
+pNWium5JvVIAWJNQUX=5Fte9oJyfRplmDWYphWe00pnP5=5FfCbFnVU9nkecUyCZYmod-mXaMh9=
+xJ1dFNj1JXCZ0mGJZO-nbUSJB-oqs9-q5RoQGxC60=5Ff6QWRkCJP1Y3klH2ovjeLlUT9yTN5DW=
+y6hVbyklGvlFXPdDnFbBvFFiXG3yG4h2PIkQU=5F7VbDluanoOLJkmZOOrnhlRkmVppts6sGgoI=
+WJ7ZWGTPvzT56CWmFCtMCDCmpcp9C4mYRNRvbrB2-=22                      =
+alt=3D'Twitter de Santander Becas'>               </a>             </div>  =
+            <!-- linkedIn -->             <div style=3D'display: =
+inline-flex; border: 1px solid #000; border-radius: 50%; padding: 8px; =
+cursor: pointer; margin-right: 15px;'>               <a =
+aria-label=3D'Linkedin de Santander Becas' style=3D'display: flex !=
+important;'                  href=3D=22https://r.m.universia.=
+net/tr/cl/S1BcvQYe9buBMzZQ4aLmTCDxOuHyE50PsYPCMm0UIek50vgJO0-OATe20JC3SUedw=
+Sz-ePhKv2K0JdCUKO2s8B5cYAA6jRIzV0t0qTzCFUja9ekIvIbRY=5F-3xwbp4YdmHpjZi7Qgn7=
+LI-LMQVQj3vlYzK7eSkWZ=5F6KRR2Zqv47cpM17cmM7Z-NmVfecIyeMDRsp7z-IYrsfI=5FHeBk=
+01LngGz7lBp47rP6zwaYMh9MUAyIiAv2T5N9vfUQ7S=5FMXvgxujXqDnw=22               =
+   rel=3D'noreferrer' target=3D'=5Fblank'>                 <img =
+height=3D'18' src=3D=22https://img.m.universia.net/im/2308302/371b1d1fef0a8=
+04146ceca2dfa3f9206c5de801c749fca36a5670fc18d7d5070.=
+png=3Fe=3DW8Ej4MKs33fJ658pS5X0gt1S8s8vY94zM2bw4rcmkCvW3KvwKH7DSoEnC3BqHZgAj=
+7H9ilcYTc-yMrDjuHQTZnQVuHqsby1h4sTMcF=5FsYiZHIc7QUUaG58TildVPmAlHWz5aGDil0N=
+jyFG65gtSmmaT1eo8rSMrd=5F8nYD2kKyDiIR4klMqKCrCUEXhIK-GbP0pmuWM4MLwOms6wtjE6=
+JPxJXld4uJ83Qcd429vvQzsgDb8ZNJrbCGubWVHuuiCBCq9qJxSWMUUP=5F6EOaQ15fl9DQDOfq=
+jd0dvDR3GVXiyJQxycyIzMeUl=5Fbatk5EXwBV=22                      =
+alt=3D'Linkedin de Santander Becas'>               </a>             </div> =
+             <!-- facebook -->             <div style=3D'display: =
+inline-flex; border: 1px solid #000; border-radius: 50%; padding: 8px; =
+cursor: pointer;'>               <a aria-label=3D'Facebook de Santander =
+Becas' style=3D'display: flex !important;'                  =
+href=3D=22https://r.m.universia.net/tr/cl/UgCeK945goHMi7uas09DZLYZlXDWrm7Pa=
+UpxU4RGAxEamnLTlTJ4F9u=5FDSKuPxOtmRNh4-6-9MKO-JkaLd5-j6T7XCoOC=5FGQnLHnWX9V=
+SUqqAqGTg7gSSrL0OUS2b1wSMG-tfnLnCTvydXLA0Tv84rnRoYIaoeOThJ0LkTNvSrk4kNQjpCD=
+ViIRkuTEIyVJhL-Q37DZAmpJFGtgblx3exF8pwdLLdeC8l2-1DXm0GG3i6IAqsC8f9UB8Qg=22 =
+                 rel=3D'noreferrer' target=3D'=5Fblank'>                 =
+<img height=3D'18' src=3D=22https://img.m.universia.=
+net/im/2308302/83a3c97141cf0459d77cc873cbef29a10ebe69059e6019c5ecc18958326c=
+e7c4.png=3Fe=3DLarGH5-XoDc4lRKtyUuiBW8aREjarrK0rKnR=5F33p7s6v5X025m-dDPqm9g=
+n9XLpu77svaWgYPpfQVpic-jVkA1hQ1BNFQ8Wep008C8RW8toNumP-yqIPvBxW=5FwfRCYyDAWF=
+d=5FiChSA4nOmDBvvpAkAFoOH3x1-hzeO-7dz0NaImvhMSSPybdblpmM0AAQngTaiNfXoI79Kjq=
+GLTNR4jFq9l0vubY0gDVDL19JqLiELmG=5FZjLvLm-qW9rHTXNUdWmnrgJ2iF3Sdc7mLDW1JrGf=
+Z55MFP3xbIryBDw0f-P98UgYmp3bpWwaaK3h1-HCw=22                      =
+alt=3D'Facebook de Santander Becas'>               </a>             </div> =
+          </td>         </tr>          <!-- logo Santander -->         <tr>=
+           <td style=3D'background-color: #f2f2f2; text-align: center; =
+padding: 30px 0; border-top: 1px solid #ced8df;'>             <img =
+style=3D'margin: 0 auto; height: 35px;' src=3D=22https://img.m.universia.=
+net/im/2308302/7fdf8e52ed6cd4762f6eddccaa212d46de977734397b82fa019125634648=
+0543.png=3Fe=3DYbOKb1hRzPM3BHA8TuzLvj7FmQ1Lhk5S8NXkBD4Jp4SLRhib9OaNKzmnNPgc=
+9=5FfStgHG6xt6Kvj=5FRMHpyGk5qRfhc07PkGDQVUy-pcKs3A7yztzE16iDsDKLhLh2EJhT6GE=
+Utg0HblVdE6bmlNAgP-Cd5LbD8Mc9V5JL-BJTH-U9RNjleb2vrtMcyqSAcNagTfdt2S5tLDeH8=
+=5F3kDe7h-NxgBN4cai01MM5MlDs8VF0FjpeWasysg8YEy7Vz0KOEp6G-1H7d4y1l8eZT=5Ffaq=
+xqsmFOhJCiz=5FkXYarOi1FpHkBRM=22                  alt=3D'Logo Santander'>  =
+         </td>         </tr>       </table>     </td>   </tr> </table>  <!=
+-- footer --> <table align=3D'center' border=3D'0' cellpadding=3D'0' =
+cellspacing=3D'0' style=3D'width: 100%'>   <tr>     <td =
+style=3D'background-color: #e9e9e9; padding: 32px 0;'>       <table =
+style=3D'width: 600px' align=3D'center' border=3D'0' cellpadding=3D'0' =
+cellspacing=3D'0'>                    <tr>             <td>               =
+<p style=3D'margin-top: 0; font-family: Arial,sans-serif; font-size: 12px; =
+line-height: 1.67; letter-spacing: 0.6px; color: #000;'>                 =
+Voc=C3=AA tamb=C3=A9m pode entrar copiando esta rota para o seu navegador: =
+              </p>             </td>           </tr>           <tr>        =
+     <td style=3D'background-color: #fff; padding: 3px;'>               =
+<svg style=3D'padding: 2px 2px 0 5px;' xmlns=3D'http://www.w3.org/2000/svg'=
+ width=3D'15' height=3D'15' fill-rule=3D'evenodd' clip-rule=3D'evenodd' =
+viewBox=3D'0 0 640 640'>                 <path d=3D'M485.297 72.71v40.=
+264h63.533v.118c20.031.024 38.208 8.197 51.342 21.355a72.402 72.402 0 0 1 =
+21.201 51.13h.119V567.35h-.119c-.035 20.008-8.196 38.197-21.354 51.343-13.=
+051 13.027-31.146 21.154-51.13 21.189V640H227.376v-.118c-20.02-.024-38.21-8=
+.197-51.343-21.343a72.423 72.423 0 0 1-21.201-51.13h-.118v-85.572H91.182v-.=
+118c-20.02-.024-38.209-8.197-51.343-21.343-13.04-13.063-21.154-31.158-21.=
+2-51.13h-.119V72.661h.118c.036-20.032 8.209-38.221 21.355-51.343A72.402 72.=
+402 0 0 1 91.123.118v-.119h321.512v.119c20.031.023 38.209 8.197 51.343 21.=
+354 13.04 13.051 21.154 31.146 21.2 51.119h.119v.118zm-55.135 40.264V72.59h=
+.119c-.012-4.712-2.044-9.118-5.28-12.366-3.2-3.2-7.595-5.209-12.366-5.209v.=
+119H91.123v-.119c-4.736.012-9.13 2.044-12.366 5.28-3.2 3.2-5.22 7.595-5.22 =
+12.366h.118v336.584h-.118c.011 4.724 2.055 9.118 5.29 12.366 3.19 3.2 7.596=
+ 5.209 12.355 5.209v-.118h63.533V185.636h.118c.023-20.031 8.209-38.22 21.=
+354-51.343a72.402 72.402 0 0 1 51.131-21.2v-.119h202.846zM566.359 567.=
+29V185.578h.118c-.012-4.725-2.056-9.13-5.292-12.379-3.189-3.2-7.594-5.=
+208-12.354-5.208v.118H227.318v-.118c-4.736.012-9.141 2.043-12.378 5.28-3.2 =
+3.2-5.208 7.594-5.208 12.366h.118V567.409h-.118c.011 4.724 2.043 9.118 5.28=
+ 12.366 3.2 3.201 7.594 5.209 12.365 5.209v-.118H548.89v.118c4.724-.012 9.=
+13-2.043 12.366-5.28 3.2-3.189 5.22-7.594 5.22-12.354h-.118v-.06z'/>       =
+        </svg>               <a style=3D'margin: 0; font-family: Arial,=
+sans-serif; font-size: 12px; line-height: 1.67; letter-spacing: 0.6px; =
+color: #6f7779; text-decoration-line: underline; cursor: pointer;'         =
+        href=3D=22https://r.m.universia.net/tr/cl/gRVWn6K=5FKIt0lEILrCtkpkj=
+nRkEvfnaZ0I7Qb4SaLLGaPYLCQAAcgFPd8fPcM=5FlONIZDSabvsTrtes7TmFTr0GjcbB2Ljs-w=
+JFJ3zjJDf5AzE3rpbVd5HPSTJJVjb5XK9rF8VehwYCjvie5=5Fn=5Fhnz5myshQ4AfGqi8uSba0=
+snyL3eet4OR5qMxUFfDzo7uiH850KI-uw2-w1ycR=5FNNUylcQI-ZLainI1zGvJ7APLiR9Cg8jG=
+nAyAa=5F3AIAmN2qyvoKhYW=5F9db2LvZMm=5FXwLW9e6mU9w38yGVVCLJIvVrxLgsx6ROf4e6U=
+XmbuzE=22                 rel=3D'noreferrer' target=3D'=5Fblank'>          =
+       https://app.becas-santander.com/pt-BR/program/bolsas-santander-tecno=
+logia-santander-coders-2023               </a>             </td>           =
+</tr>                  <tr>           <td>             <p =
+style=3D'font-family: Arial,sans-serif; font-size: 12px; line-height: 1.67;=
+ letter-spacing: 0.6px; color: #000;'>               Voc=C3=AA tem alguma =
+d=C3=BAvida sobre esta notifica=C3=A7=C3=A3o=3F Entre em contato conosco =
+em<br>               <a style=3D'margin: 0; font-family: Arial,sans-serif; =
+font-size: 12px; line-height: 1.67; letter-spacing: 0.6px; color: #6f7779; =
+text-decoration-line: underline; cursor: pointer;'                  =
+href=3Dhttps://app.becas-santander.com/pt-BR/legal/support                 =
+ rel=3D'noreferrer' target=3D'=5Fblank'>app.becas-santander.=
+com/legal/support</a>             </p>           </td>         </tr>       =
+  <!--tr>           <td>             <p style=3D'margin: 0; font-family: =
+Arial,sans-serif; font-size: 12px; line-height: 1.67; letter-spacing: 0.=
+6px; color: #000;'>               {notifications}               <a =
+style=3D'margin: 0; font-family: Arial,sans-serif; font-size: 12px; =
+line-height: 1.67; letter-spacing: 0.6px; color: #6f7779; =
+text-decoration-line: underline; cursor: pointer;'                  =
+href=3D=22https://r.m.universia.net/tr/cl/5=5FuFyNULz4ux-GhIjVt60fBHDVlKrPl=
+mhbKOxMpI3B1P0LHPYEcwX9YOC2lUa1mOmynz2fpLpZ7C9tzIPJAHGTcSateLs1vXKQuPUnbaOq=
+EkgFYnQmX=5FYVAFdBdaxye-txnVdzrZ3RYx71mTlo29Trl48GYk3zI6xCSeenE=5Ff-vV=22  =
+                rel=3D'noreferrer' target=3D'=5Fblank'>{quit=5Fnotification=
+s}</a>             </p>           </td>         </tr-->       </table>     =
+</td>   </tr> </table>  <!-- legal terms --> <table align=3D'center' =
+border=3D'0' cellpadding=3D'0' cellspacing=3D'0' width=3D'700'>   <tr>     =
+<td style=3D'background-color: #fff; padding: 32px 60px;'>       <table =
+align=3D'center' border=3D'0' cellpadding=3D'0' cellspacing=3D'0'>         =
+<!-- terms -->                 <!-- terms -->          <tr>           <td> =
+            <p style=3D'text-align: justify; margin-top: 0; font-family: =
+Arial,sans-serif; font-size: 12px; line-height: 1.67; letter-spacing: 0.=
+6px; color: #000;'>Recebeste esta comunica=C3=A7ao como parte da tua =
+inscri=C3=A7ao no programa Bolsas Santander | Santander Coders 2023 por =
+interm=C3=A9dio do www.becas-santander.com</p>           </td>         =
+</tr>         <tr>           <td>             <p style=3D'text-align: =
+justify; margin-top: 0; font-family: Arial,sans-serif; font-size: 12px; =
+line-height: 1.67; letter-spacing: 0.6px; color: #000;'>               =
+=C2=A9 2023. Banco Santander, Todos os direitos reservados.             =
+</p>           </td>         </tr>                     <tr>             =
+<td>               <p style=3D'text-align: justify; margin-top: 0; =
+font-family: Arial,sans-serif; font-size: 12px; line-height: 1.67; =
+letter-spacing: 0.6px; color: #000;'>Universia Holding SL, empresa =
+registrada no Registro Mercantil de Madrid em 2005, Volume 16547, Folio 107=
+, Folha n=C3=BAmero M-28189, Registro: 4=C2=AA, com CIF: B82976515, e =
+escrit=C3=B3rio registrado na Av. de Cantabria s/n, 28660 Boadilla del =
+Monte, Madrid</p>             </td>           </tr>                  =
+</table>     </td>   </tr> </table> <img width=3D'1' height=3D'1' =
+src=3D'https://r.m.universia.net/tr/op/iHRo5ch6DL9okPboidq0UVTNNgmL5DYc00oS=
+M1=5F-igfc2JukaaLFS9Bo0AFYsPYIHk2KUxWCIzkdxfP2puxmV1oGcPzPIRVGy8yXC4ZL7X3Ns=
+P2lRjPSSFVFRRgRwg5U3FdSoyngHfJzMo7rLN0vRdcVdmjrpTY' alt=3D'' /></body>  =
+</html>=20
+

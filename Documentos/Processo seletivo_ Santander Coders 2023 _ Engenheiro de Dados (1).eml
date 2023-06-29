@@ -1,0 +1,1987 @@
+Delivered-To: tonysdefreitas@gmail.com
+Received: by 2002:a05:7011:290:b0:35e:2f37:bd88 with SMTP id he16csp2442698mdb;
+        Tue, 30 May 2023 17:28:23 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5HtzLS9DZKtJ0GkRw/iHFPO3z/8frXizHUCaQKGxsbj6RXOhWmCUogzFyVonHNjBo6Ee0E
+X-Received: by 2002:a05:6870:8c28:b0:177:cbb6:ba2 with SMTP id ec40-20020a0568708c2800b00177cbb60ba2mr1443088oab.53.1685492903351;
+        Tue, 30 May 2023 17:28:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685492903; cv=none;
+        d=google.com; s=arc-20160816;
+        b=H9NRC7VG472+CiLM4qtARLl7ViQS4SlwEB6UzbSJJ0/nH8p6zg4SzchZoLvRlZF/t0
+         1JgGflYlTHmvRufTB+QVFGroerJH168yKnpW6MjdL6E2mHDQDnOTUVQuwSYVoL5dZF2f
+         AmP9rN9+9Zl/YS+m89sXsGlES/Yhph6KBSb8A408iEPJAnZLWF9I1ha1WiLGBU95Fp0P
+         Ynd8hlwvzIDaNXteoT0MUAHHuDvx/uA5EQa3DL4TfN5Jmm6/cUB2U5GxrklDRithl7iT
+         0n7FCPQ3+E6k8drj2hO9PS1KbM+lanRHn+Frkj0tbduxUXrg1k4fTtumITznAxdNzi2d
+         XkNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+         :subject:to:reply-to:from:dkim-signature:dkim-signature;
+        bh=ZwjmM74n1KiJhV6rle+cgxibPDXAZf1/5lQlgncqp1Q=;
+        b=baHIQBkwmzsaESIBzPIUfjcLyZ6RSAF1zJKnz4OlZGW6JfUMsTnmhS057S8zWf9jnb
+         /HCdbt9KmCVyKG7QlzOs1EtaP8MjowffrLiBWB8qnoIC5hJ3c9MxUY1GP6maFckdDwjq
+         srfRyhFmQP2kRBFtup4GHk8PUTrXf1MxI8lOKd5IaSAeObgLDltW+D9cYDKXLfabrWAK
+         O33I5jBkNXjo3RL841haj7SoJHbZ0Nok3z9jVChWLRc13dbCo+DvuxbsKcxDZcJjq58p
+         A6yu3fauj/MkXwiHiXXaBO1AE7EK6mBN05FFuONOtDEaPzmAFG6paJJX+NxYn/4Sv2a8
+         Wqig==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ada.tech header.s=tampjw57l6dkea6t64wx34credvd6cle header.b=mLxFScbB;
+       dkim=pass header.i=@amazonses.com header.s=n3kzslanjhdj36g2753vor472zw45rsk header.b=XuD2fdda;
+       spf=pass (google.com: domain of 010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com designates 23.249.215.57 as permitted sender) smtp.mailfrom=010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com
+Return-Path: <010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com>
+Received: from d215-57.smtp-out.sa-east-1.amazonses.com (d215-57.smtp-out.sa-east-1.amazonses.com. [23.249.215.57])
+        by mx.google.com with ESMTPS id m24-20020a4a3918000000b005529308e790si7654647ooa.34.2023.05.30.17.28.22
+        for <tonysdefreitas@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 May 2023 17:28:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com designates 23.249.215.57 as permitted sender) client-ip=23.249.215.57;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ada.tech header.s=tampjw57l6dkea6t64wx34credvd6cle header.b=mLxFScbB;
+       dkim=pass header.i=@amazonses.com header.s=n3kzslanjhdj36g2753vor472zw45rsk header.b=XuD2fdda;
+       spf=pass (google.com: domain of 010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com designates 23.249.215.57 as permitted sender) smtp.mailfrom=010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=tampjw57l6dkea6t64wx34credvd6cle; d=ada.tech; t=1685492901;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date;
+	bh=H8QZpHXpR8yNX4MGpFlhttXEc09BVfHNenMbTKYY1BM=;
+	b=mLxFScbBicU0kZRmIXIO709RgoGG4X5VGO9F6axMMSd/bmTypulRdAgstD15DX9s
+	V/gyAe2Eh8N7UHwuwc33gIs8zljvN763vGoCWwtWRQIP0kfGWYGaTU53IeyzWvI7pi1
+	4SlHP/gQlhS4io7bkswOKZ7v/iFoLTNpKEDkkrGU07De8lQLCEg8KCIyan3w08qJSez
+	hl+Bm/WWX4iGRIu5fX8ub7x6/IWFXbc32X9KK9kcrA2035WH0mjcotIAjzMASW4BhPy
+	H7mzRVeLO6BrI0CdaghRx1Wficb4BhOD32i6lqTU5YqKYxMQERtDDxWOVDvTTBzaWJg
+	0UQz52xaCA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=n3kzslanjhdj36g2753vor472zw45rsk; d=amazonses.com; t=1685492901;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID;
+	bh=H8QZpHXpR8yNX4MGpFlhttXEc09BVfHNenMbTKYY1BM=;
+	b=XuD2fddaoWXJWeuF2BP7mteHk98VGNJ7a3JiVpb3mJsPPk5FUqcOvwL6tyEt7z31
+	ZfMCmpW96OLJJreJ7y/NI0640S69nqCMhL25K3t1YT7NJnaabpW0pl8xEjWgaTE1OBu
+	rBK3iuk4MnQxI43UTDmN6SOpZBxS54vmuv+bl8RM=
+From: no-reply@ada.tech
+Reply-To: no-reply@ada.tech
+To: tonysdefreitas@gmail.com
+Subject: Processo seletivo: Santander Coders 2023 | Engenheiro de Dados
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <010301886f34a728-9c33febd-5964-4b38-9bbd-2225c0841fe9-000000@sa-east-1.amazonses.com>
+Date: Wed, 31 May 2023 00:28:21 +0000
+Feedback-ID: 1.sa-east-1.wVEURHDW4339gKtuzf7Ehgz2Vme9wa9Afoo+zU/6oi4=:AmazonSES
+X-SES-Outgoing: 2023.05.31-23.249.215.57
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml"
+   xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+
+<head>
+   <!-- NAME: 1 COLUMN -->
+   <!--[if gte mso 15]>
+   <xml>
+    <o:OfficeDocumentSettings>
+     <o:AllowPNG />
+     <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+   </xml>
+  <![endif]-->
+   <meta charset=3D"UTF-8" />
+   <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+   <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1" />
+   <title>Santander Coders 2023 | Engenheiro de Dados</title>
+</head>
+
+<body
+   style=3D"height: 100%; margin: 0; padding: 0; width: 100%; -ms-text-size=
+-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: #fafafa;">
+   <!--*|IF:MC_PREVIEW_TEXT|*-->
+   <!--[if !gte mso 9]><!---->
+   <span class=3D"mcnPreviewText"
+      style=3D"display: none; font-size: 0px; line-height: 0px; max-height:=
+ 0px; max-width: 0px; opacity: 0; overflow: hidden; visibility: hidden; mso=
+-hide: all;">Santander Coders 2023 | Engenheiro de Dados</span>
+   <!--<![endif]-->
+   <!--*|END:IF|*-->
+   <center>
+      <table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" height=3D"100%" width=3D"100%" id=3D"bodyTable"
+         style=3D"border-collapse: collapse; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+ height: 100%; margin: 0; padding: 0; width: 100%; background-color: #fafaf=
+a;">
+         <tr>
+            <td align=3D"center" valign=3D"top" id=3D"bodyCell"
+               style=3D"mso-line-height-rule: exactly; -ms-text-size-adjust=
+: 100%; -webkit-text-size-adjust: 100%; height: 100%; margin: 0; padding: 1=
+0px; width: 100%; border-top: 0;">
+               <!-- BEGIN TEMPLATE // -->
+               <!--[if (gte mso 9)|(IE)]>
+                  <table align=3D"center" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" width=3D"600" style=3D"width:600px;">
+                     <tr>
+                        <td align=3D"center" valign=3D"top" width=3D"600" s=
+tyle=3D"width:600px;">
+                           <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" class=3D"templateContainer"
+                  style=3D"border-collapse: collapse; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adju=
+st: 100%; border: 0; max-width: 600px !important;">
+                  <tr>
+                     <td valign=3D"top" id=3D"templatePreheader" style=3D"
+          background: #fafafa none no-repeat center/cover;
+          mso-line-height-rule: exactly;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+          background-color: #fafafa;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-top: 0;
+          border-bottom: 0;
+          padding-top: 9px;
+          padding-bottom: 9px;
+         ">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" class=3D"mcnTextBlock"
+                           style=3D"min-width: 100%; border-collapse: colla=
+pse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%;">
+                           <tbody class=3D"mcnTextBlockOuter">
+                              <tr>
+                                 <td valign=3D"top" class=3D"mcnTextBlockIn=
+ner"
+                                    style=3D"padding-top: 9px; mso-line-hei=
+ght-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%;">
+                                    <!--[if mso]>
+                                                <table align=3D"left" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"width:1=
+00%;">
+                                                   <tr>
+                                                      <![endif]-->
+                                    <!--[if mso]>
+                                                      <td valign=3D"top" wi=
+dth=3D"600" style=3D"width:600px;">
+                                                         <![endif]-->
+                                    <table align=3D"left" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0"
+                                       style=3D"max-width: 100%; min-width:=
+ 100%; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
+                                       width=3D"100%" class=3D"mcnTextConte=
+ntContainer"></table>
+                                    <!--[if mso]>
+                                                      </td>
+                                                      <![endif]-->
+                                    <!--[if mso]>
+                                                   </tr>
+                                                </table>
+                                                <![endif]-->
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td valign=3D"top" id=3D"templateHeader" style=3D"
+          background: #ffffff none no-repeat center/cover;
+          mso-line-height-rule: exactly;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+          background-color: #ffffff;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-top: 0;
+          border-bottom: 0;
+          padding-top: 9px;
+          padding-bottom: 0;
+         ">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" class=3D"mcnImageBlock"
+                           style=3D"min-width: 100%; border-collapse: colla=
+pse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%;">
+                           <tbody class=3D"mcnImageBlockOuter">
+                              <tr>
+                                 <td valign=3D"top"
+                                    style=3D"padding: 9px; mso-line-height-=
+rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
+                                    class=3D"mcnImageBlockInner">
+                                    <table align=3D"left" width=3D"100%" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0"
+                                       class=3D"mcnImageContentContainer"
+                                       style=3D"min-width: 100%; border-col=
+lapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-siz=
+e-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                       <tbody>
+                                          <tr>
+                                             <td class=3D"mcnImageContent" =
+valign=3D"top"
+                                                style=3D"padding-right: 9px=
+; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align: center;=
+ mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%;">
+                                                <img align=3D"center" alt=
+=3D"Santander Coders 2023 | Engenheiro de Dados"
+                                                   src=3D"https://mcusercon=
+tent.com/bd190081fa7a8ffe2edee193e/images/82311b08-4f9b-9b62-921c-2b04fc656=
+8b5.png"
+                                                   style=3D"max-width: 750p=
+x; padding-bottom: 0; display: inline !important; vertical-align: bottom; b=
+order: 0; height: auto; outline: none; text-decoration: none; -ms-interpola=
+tion-mode: bicubic;"
+                                                   class=3D"mcnImage" />
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td valign=3D"top" id=3D"templateBody" style=3D"
+          background: #ffffff none no-repeat center/cover;
+          mso-line-height-rule: exactly;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+          background-color: #ffffff;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-top: 0;
+          border-bottom: 2px solid #eaeaea;
+          padding-top: 0;
+          padding-bottom: 9px;
+         ">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" class=3D"mcnTextBlock"
+                           style=3D"min-width: 100%; border-collapse: colla=
+pse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%;">
+                           <tbody class=3D"mcnTextBlockOuter">
+                              <tr>
+                                 <td valign=3D"top" class=3D"mcnTextBlockIn=
+ner"
+                                    style=3D"padding-top: 9px; mso-line-hei=
+ght-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%;">
+                                    <!--[if mso]>
+                                                <table align=3D"left" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"width:1=
+00%;">
+                                                   <tr>
+                                                      <![endif]-->
+                                    <!--[if mso]>
+                                                      <td valign=3D"top" wi=
+dth=3D"600" style=3D"width:600px;">
+                                                         <![endif]-->
+                                    <table align=3D"left" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0"
+                                       style=3D"max-width: 100%; min-width:=
+ 100%; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
+                                       width=3D"100%" class=3D"mcnTextConte=
+ntContainer">
+                                       <tbody>
+                                          <tr>
+                                             <td valign=3D"top" class=3D"mc=
+nTextContent" style=3D"
+                  padding-top: 0;
+                  padding-right: 18px;
+                  padding-bottom: 9px;
+                  padding-left: 18px;
+                  mso-line-height-rule: exactly;
+                  -ms-text-size-adjust: 100%;
+                  -webkit-text-size-adjust: 100%;
+                  word-break: break-word;
+                  color: #202020;
+                  font-family: Helvetica;
+                  font-size: 16px;
+                  line-height: 150%;
+                  text-align: left;
+                 ">
+                                                <span style=3D"color: #181c=
+23;">
+                                                   Ol=C3=A1, Anthony Samuel=
+ Sobral de Freitas, tudo bem?<br />
+                                                   <p style=3D"font-weight:=
+ bold;">Seu teste foi enviado com sucesso!</p>
+
+                                                   <table style=3D"width: 1=
+00%; margin: auto; border-collapse: collapse;">
+                                                      <tr>
+                                                         <td style=3D"width=
+: 30px; min-height: 100px;">
+                                                            <span
+                                                               style=3D"bor=
+der-radius: 50%; width: 20px; height: 20px; background-color: #a6f750; disp=
+lay: inline-block; border: 4px #a6f750 solid;text-align:center;text-size:14=
+px;color:#fff;"><img
+                                                                  src=3D"ht=
+tps://mcusercontent.com/bd190081fa7a8ffe2edee193e/images/7716a52e-993b-707b=
+-453f-d727e8a12a1d.png"
+                                                                  style=3D"=
+width: 15px;" /></span>
+                                                         </td>
+                                                         <td
+                                                            style=3D"border=
+-left: 0px; background-color: #f4f4f4; border: 20px #fff solid; padding: 30=
+px;color:#282c33;">
+                                                            <h2
+                                                               style=3D"dis=
+play: block; margin: 0; padding: 10px 0px; color: #181c23; font-family: Hel=
+vetica; font-size: 18px; font-style: normal; font-weight: bold; line-height=
+: 25%; letter-spacing: normal; text-align: left;">
+                                                               Inscri=C3=A7=
+=C3=A3o
+                                                            </h2>
+                                                            <div><b>Nome:</=
+b> Anthony Samuel Sobral de Freitas</div>
+                                                            <div><b>E-mail:=
+</b> tonysdefreitas@gmail.com</div>
+                                                            <div><b>Id de I=
+nscri=C3=A7=C3=A3o:</b> aa012a13-253b-4524-a802-639012323407</div>
+                                                         </td>
+                                                      </tr>
+
+                                                      <tr>
+                                                         <td style=3D"width=
+: 30px; min-height: 100px;">
+                                                            <span
+                                                               style=3D"bor=
+der-radius: 50%; width: 20px; height: 20px; background-color: #a6f750; disp=
+lay: inline-block; border: 4px #a6f750 solid;text-align:center;text-size:14=
+px;color:#fff;"><img
+                                                                  src=3D"ht=
+tps://mcusercontent.com/bd190081fa7a8ffe2edee193e/images/7716a52e-993b-707b=
+-453f-d727e8a12a1d.png"
+                                                                  style=3D"=
+width: 15px;" /></span>
+                                                         </td>
+                                                         <td
+                                                            style=3D"border=
+-left: 0px; background-color: #f4f4f4; border: 20px #fff solid; padding: 20=
+px;">
+                                                            <h2
+                                                               style=3D"dis=
+play: block; margin: 0; padding: 10px 0px; color: #181c23; font-family: Hel=
+vetica; font-size: 18px; font-style: normal; font-weight: bold; line-height=
+: 25%; letter-spacing: normal; text-align: left;">
+                                                               Curso Online
+                                                            </h2>
+                                                         </td>
+                                                      </tr>
+                                                      <tr>
+
+                                                      <tr>
+                                                         <td style=3D"width=
+: 30px; min-height: 100px;">
+                                                            <span
+                                                               style=3D"bor=
+der-radius: 50%; width: 20px; height: 20px; background-color: #a6f750; disp=
+lay: inline-block; border: 4px #a6f750 solid;text-align:center;text-size:14=
+px;color:#fff;"><img
+                                                                  src=3D"ht=
+tps://mcusercontent.com/bd190081fa7a8ffe2edee193e/images/7716a52e-993b-707b=
+-453f-d727e8a12a1d.png"
+                                                                  style=3D"=
+width: 15px;" /></span>
+                                                         </td>
+                                                         <td
+                                                            style=3D"border=
+-left: 0px; background-color: #f4f4f4; border: 20px #fff solid; padding: 30=
+px;">
+                                                            <h2
+                                                               style=3D"dis=
+play: block; margin: 0; padding: 10px 0px; color: #181c23; font-family: Hel=
+vetica; font-size: 18px; font-style: normal; font-weight: bold; line-height=
+: 25%; letter-spacing: normal; text-align: left;">
+                                                               Teste de Apt=
+id=C3=A3o Tech
+                                                            </h2>
+                                                            <div>Confira ab=
+aixo o seu cart=C3=A3o de respostas e as
+                                                               alternativas=
+ que voc=C3=AA preencheu.</div>
+                                                            <br />
+                                                            <div class=3D"c=
+ontainer"
+                                                               style=3D"box=
+-sizing: border-box;width: 100%;margin-top: 5px;">
+                                                              =20
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      01</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      02</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      D</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      03</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      04</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      B</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      05</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      D</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      06</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      07</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      A</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      08</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      B</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      09</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      10</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      D</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      11</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      D</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      12</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      E</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      13</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      D</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      14</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      D</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      15</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      16</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      17</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      B</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      18</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      B</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      19</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      B</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                               <div class=
+=3D"item"
+                                                                  style=3D"=
+box-sizing: border-box;display: inline-block;width: 20%;padding: 2px;">
+                                                                  <div clas=
+s=3D"item-content"
+                                                                     style=
+=3D"box-sizing: border-box;border: 3px solid black;border-radius: 5px;">
+                                                                     <table
+                                                                        sty=
+le=3D"box-sizing: border-box;width: 100%;text-align: center;border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;">
+                                                                        <tb=
+ody style=3D"box-sizing: border-box;">
+                                                                           =
+<tr style=3D"box-sizing: border-box;">
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                                                           =
+      20</td>
+                                                                           =
+   <td
+                                                                           =
+      style=3D"box-sizing: border-box;width: 50%;border-left: 3px solid bla=
+ck;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-si=
+ze-adjust: 100%;">
+                                                                           =
+      C</td>
+                                                                           =
+</tr>
+                                                                        </t=
+body>
+                                                                     </tabl=
+e>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <br />
+                                                            <i>Sua pontua=
+=C3=A7=C3=A3o, resultado, o gabarito e as principais
+                                                               estat=C3=ADs=
+ticas ser=C3=A3o enviados por e-mail ap=C3=B3s o final desta
+                                                               fase.
+                                                               <br>
+                                                               <br>
+                                                               <b>A data de=
+ resultado do Teste de Aptid=C3=A3o Tech ser=C3=A1
+                                                                  divulgada=
+ a partir do
+                                                                  dia 01/06=
+/2023.</b>
+                                                            </i>
+                                                         </td>
+                                                      </tr>
+
+
+
+                                                      <tr>
+                                                         <td style=3D"width=
+: 30px; min-height: 100px;">
+                                                            <span
+                                                               style=3D"bor=
+der-radius: 50%; width: 20px; height: 20px; background-color: #f4f4f4; disp=
+lay: inline-block; border: 4px #f4f4f4 solid;">
+                                                            </span>
+                                                         </td>
+                                                         <td
+                                                            style=3D"border=
+-left: 0px; background-color: #f4f4f4; border: 20px #fff solid; padding: 20=
+px;">
+                                                            <h2
+                                                               style=3D"dis=
+play: block; margin: 0; padding: 10px 0px; color: #181c23; font-family: Hel=
+vetica; font-size: 18px; font-style: normal; font-weight: bold; line-height=
+: 25%; letter-spacing: normal; text-align: left;">
+                                                               Resolu=C3=A7=
+=C3=A3o de Case
+                                                            </h2>
+                                                         </td>
+                                                      </tr>
+
+                                                      <tr>
+                                                         <td style=3D"width=
+: 30px; min-height: 100px;">
+                                                            <span
+                                                               style=3D"bor=
+der-radius: 50%; width: 20px; height: 20px; background-color: #f4f4f4; disp=
+lay: inline-block; border: 4px #f4f4f4 solid;">
+                                                            </span>
+                                                         </td>
+                                                         <td
+                                                            style=3D"border=
+-left: 0px; background-color: #f4f4f4; border: 20px #fff solid; padding: 20=
+px;">
+                                                            <h2
+                                                               style=3D"dis=
+play: block; margin: 0; padding: 10px 0px; color: #181c23; font-family: Hel=
+vetica; font-size: 18px; font-style: normal; font-weight: bold; line-height=
+: 25%; letter-spacing: normal; text-align: left;">
+                                                               Coding Tank
+                                                            </h2>
+                                                         </td>
+                                                      </tr>
+                                                   </table>
+                                                   <br />
+                                                   <h2
+                                                      style=3D"display: blo=
+ck; margin: 0; padding: 10px 0px; color: #181c23; font-family: Helvetica; f=
+ont-size: 18px; font-style: normal; font-weight: bold; line-height: 25%; le=
+tter-spacing: normal; text-align: left;">
+                                                      Ainda tem d=C3=BAvida=
+s?
+                                                   </h2>
+                                                   <a href=3D"https://ada.t=
+ech/sou-aluno"
+                                                      style=3D"mso-line-hei=
+ght-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; color: #007c89; font-weight: normal; text-decoration: underline;">
+                                                      Confira as informa=C3=
+=A7=C3=B5es do programa no Edital ou no FAQ</a>. Para
+                                                   outras d=C3=BAvidas
+                                                   <a href=3D"https://wa.me=
+/5511933387373?text=3DOl%C3%A1%2C%20preciso%20de%20ajuda%20com%20um%20proce=
+sso%20seletivo%20Santander Coders 2023 | Engenheiro de Dados."
+                                                      style=3D"mso-line-hei=
+ght-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; color: #007c89; font-weight: normal; text-decoration: underline;">
+                                                      entre em contato</a> =
+com nosso time de relacionamento ou acesse a
+                                                   =C3=A1rea do candidato.
+                                                   <br />
+                                                   <br />
+                                                   Boa sorte!
+                                                   <br />
+                                                   <br />
+                                                   Time Ada
+                                                </span>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <!--[if mso]>
+                                                      </td>
+                                                      <![endif]-->
+                                    <!--[if mso]>
+                                                   </tr>
+                                                </table>
+                                                <![endif]-->
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td valign=3D"top" id=3D"templateFooter" style=3D"
+          background: #fafafa none no-repeat center/cover;
+          mso-line-height-rule: exactly;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+          background-color: #fafafa;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          border-top: 0;
+          border-bottom: 0;
+          padding-top: 9px;
+          padding-bottom: 9px;
+         ">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" class=3D"mcnFollowBlock"
+                           style=3D"min-width: 100%; border-collapse: colla=
+pse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 10=
+0%; -webkit-text-size-adjust: 100%;">
+                           <tbody class=3D"mcnFollowBlockOuter">
+                              <tr>
+                                 <td align=3D"center" valign=3D"top"
+                                    style=3D"padding: 9px; mso-line-height-=
+rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
+                                    class=3D"mcnFollowBlockInner">
+                                    <table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%"
+                                       class=3D"mcnFollowContentContainer"
+                                       style=3D"min-width: 100%; border-col=
+lapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-siz=
+e-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                       <tbody>
+                                          <tr>
+                                             <td align=3D"center"
+                                                style=3D"padding-left: 9px;=
+ padding-right: 9px; mso-line-height-rule: exactly; -ms-text-size-adjust: 1=
+00%; -webkit-text-size-adjust: 100%;">
+                                                <table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" width=3D"100%"
+                                                   style=3D"min-width: 100%=
+; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
+                                                   class=3D"mcnFollowConten=
+t">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td align=3D"cente=
+r" valign=3D"top"
+                                                            style=3D"paddin=
+g-top: 9px; padding-right: 9px; padding-left: 9px; mso-line-height-rule: ex=
+actly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                            <table align=3D=
+"center" border=3D"0" cellpadding=3D"0"
+                                                               cellspacing=
+=3D"0"
+                                                               style=3D"bor=
+der-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-t=
+ext-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td al=
+ign=3D"center" valign=3D"top"
+                                                                        sty=
+le=3D"mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -webkit-te=
+xt-size-adjust: 100%;">
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+         <table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+                                                                           =
+            <tr>
+                                                                           =
+               <![endif]-->
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               <td align=3D"center" valign=3D"top">
+                                                                           =
+                  <![endif]-->
+                                                                        <ta=
+ble align=3D"left" border=3D"0" cellpadding=3D"0"
+                                                                           =
+cellspacing=3D"0"
+                                                                           =
+style=3D"display: inline; border-collapse: collapse; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjus=
+t: 100%;">
+                                                                           =
+<tbody>
+                                                                           =
+   <tr>
+                                                                           =
+      <td valign=3D"top"
+                                                                           =
+         style=3D"padding-right: 10px; padding-bottom: 9px; mso-line-height=
+-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+"
+                                                                           =
+         class=3D"mcnFollowContentItemContainer">
+                                                                           =
+         <table border=3D"0" cellpadding=3D"0"
+                                                                           =
+            cellspacing=3D"0" width=3D"100%"
+                                                                           =
+            class=3D"mcnFollowContentItem"
+                                                                           =
+            style=3D"border-collapse: collapse; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%;">
+                                                                           =
+            <tbody>
+                                                                           =
+               <tr>
+                                                                           =
+                  <td align=3D"left"
+                                                                           =
+                     valign=3D"middle"
+                                                                           =
+                     style=3D"padding-top: 5px; padding-right: 10px; paddin=
+g-bottom: 5px; padding-left: 9px; mso-line-height-rule: exactly; -ms-text-s=
+ize-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                     <table align=3D"left"
+                                                                           =
+                        border=3D"0"
+                                                                           =
+                        cellpadding=3D"0"
+                                                                           =
+                        cellspacing=3D"0"
+                                                                           =
+                        width=3D""
+                                                                           =
+                        style=3D"border-collapse: collapse; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%;">
+                                                                           =
+                        <tbody>
+                                                                           =
+                           <tr>
+                                                                           =
+                              <td align=3D"center"
+                                                                           =
+                                 valign=3D"middle"
+                                                                           =
+                                 width=3D"24"
+                                                                           =
+                                 class=3D"mcnFollowIconContent"
+                                                                           =
+                                 style=3D"mso-line-height-rule: exactly; -m=
+s-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                 <a href=3D"https://ada.tech/?utm_medium=3D=
+e-mail&utm_source=3Dsissele=C3=A7=C3=A3o&utm_campaign=3Dinstitucional&utm_c=
+ontent=3Dmessage"
+                                                                           =
+                                    target=3D"_blank"
+                                                                           =
+                                    style=3D"mso-line-height-rule: exactly;=
+ -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                    <img
+                                                                           =
+                                       src=3D"https://cdn-images.mailchimp.=
+com/icons/social-block-v2/outline-dark-link-48.png"
+                                                                           =
+                                       alt=3D"Website"
+                                                                           =
+                                       style=3D"display: block; border: 0; =
+height: auto; outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic;"
+                                                                           =
+                                       height=3D"24"
+                                                                           =
+                                       width=3D"24"
+                                                                           =
+                                       class=3D"" />
+                                                                           =
+                                 </a>
+                                                                           =
+                              </td>
+                                                                           =
+                           </tr>
+                                                                           =
+                        </tbody>
+                                                                           =
+                     </table>
+                                                                           =
+                  </td>
+                                                                           =
+               </tr>
+                                                                           =
+            </tbody>
+                                                                           =
+         </table>
+                                                                           =
+      </td>
+                                                                           =
+   </tr>
+                                                                           =
+</tbody>
+                                                                        </t=
+able>
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               </td>
+                                                                           =
+               <![endif]-->
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               <td align=3D"center" valign=3D"top">
+                                                                           =
+                  <![endif]-->
+                                                                        <ta=
+ble align=3D"left" border=3D"0" cellpadding=3D"0"
+                                                                           =
+cellspacing=3D"0"
+                                                                           =
+style=3D"display: inline; border-collapse: collapse; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjus=
+t: 100%;">
+                                                                           =
+<tbody>
+                                                                           =
+   <tr>
+                                                                           =
+      <td valign=3D"top"
+                                                                           =
+         style=3D"padding-right: 10px; padding-bottom: 9px; mso-line-height=
+-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+"
+                                                                           =
+         class=3D"mcnFollowContentItemContainer">
+                                                                           =
+         <table border=3D"0" cellpadding=3D"0"
+                                                                           =
+            cellspacing=3D"0" width=3D"100%"
+                                                                           =
+            class=3D"mcnFollowContentItem"
+                                                                           =
+            style=3D"border-collapse: collapse; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%;">
+                                                                           =
+            <tbody>
+                                                                           =
+               <tr>
+                                                                           =
+                  <td align=3D"left"
+                                                                           =
+                     valign=3D"middle"
+                                                                           =
+                     style=3D"padding-top: 5px; padding-right: 10px; paddin=
+g-bottom: 5px; padding-left: 9px; mso-line-height-rule: exactly; -ms-text-s=
+ize-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                     <table align=3D"left"
+                                                                           =
+                        border=3D"0"
+                                                                           =
+                        cellpadding=3D"0"
+                                                                           =
+                        cellspacing=3D"0"
+                                                                           =
+                        width=3D""
+                                                                           =
+                        style=3D"border-collapse: collapse; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%;">
+                                                                           =
+                        <tbody>
+                                                                           =
+                           <tr>
+                                                                           =
+                              <td align=3D"center"
+                                                                           =
+                                 valign=3D"middle"
+                                                                           =
+                                 width=3D"24"
+                                                                           =
+                                 class=3D"mcnFollowIconContent"
+                                                                           =
+                                 style=3D"mso-line-height-rule: exactly; -m=
+s-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                 <a href=3D"https://www.instagram.com/adate=
+chbr/"
+                                                                           =
+                                    target=3D"_blank"
+                                                                           =
+                                    style=3D"mso-line-height-rule: exactly;=
+ -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                    <img
+                                                                           =
+                                       src=3D"https://cdn-images.mailchimp.=
+com/icons/social-block-v2/outline-dark-instagram-48.png"
+                                                                           =
+                                       alt=3D"Instagram"
+                                                                           =
+                                       style=3D"display: block; border: 0; =
+height: auto; outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic;"
+                                                                           =
+                                       height=3D"24"
+                                                                           =
+                                       width=3D"24"
+                                                                           =
+                                       class=3D"" />
+                                                                           =
+                                 </a>
+                                                                           =
+                              </td>
+                                                                           =
+                           </tr>
+                                                                           =
+                        </tbody>
+                                                                           =
+                     </table>
+                                                                           =
+                  </td>
+                                                                           =
+               </tr>
+                                                                           =
+            </tbody>
+                                                                           =
+         </table>
+                                                                           =
+      </td>
+                                                                           =
+   </tr>
+                                                                           =
+</tbody>
+                                                                        </t=
+able>
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               </td>
+                                                                           =
+               <![endif]-->
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               <td align=3D"center" valign=3D"top">
+                                                                           =
+                  <![endif]-->
+                                                                        <ta=
+ble align=3D"left" border=3D"0" cellpadding=3D"0"
+                                                                           =
+cellspacing=3D"0"
+                                                                           =
+style=3D"display: inline; border-collapse: collapse; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjus=
+t: 100%;">
+                                                                           =
+<tbody>
+                                                                           =
+   <tr>
+                                                                           =
+      <td valign=3D"top"
+                                                                           =
+         style=3D"padding-right: 10px; padding-bottom: 9px; mso-line-height=
+-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+"
+                                                                           =
+         class=3D"mcnFollowContentItemContainer">
+                                                                           =
+         <table border=3D"0" cellpadding=3D"0"
+                                                                           =
+            cellspacing=3D"0" width=3D"100%"
+                                                                           =
+            class=3D"mcnFollowContentItem"
+                                                                           =
+            style=3D"border-collapse: collapse; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%;">
+                                                                           =
+            <tbody>
+                                                                           =
+               <tr>
+                                                                           =
+                  <td align=3D"left"
+                                                                           =
+                     valign=3D"middle"
+                                                                           =
+                     style=3D"padding-top: 5px; padding-right: 10px; paddin=
+g-bottom: 5px; padding-left: 9px; mso-line-height-rule: exactly; -ms-text-s=
+ize-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                     <table align=3D"left"
+                                                                           =
+                        border=3D"0"
+                                                                           =
+                        cellpadding=3D"0"
+                                                                           =
+                        cellspacing=3D"0"
+                                                                           =
+                        width=3D""
+                                                                           =
+                        style=3D"border-collapse: collapse; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%;">
+                                                                           =
+                        <tbody>
+                                                                           =
+                           <tr>
+                                                                           =
+                              <td align=3D"center"
+                                                                           =
+                                 valign=3D"middle"
+                                                                           =
+                                 width=3D"24"
+                                                                           =
+                                 class=3D"mcnFollowIconContent"
+                                                                           =
+                                 style=3D"mso-line-height-rule: exactly; -m=
+s-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                 <a href=3D"https://www.linkedin.com/school=
+/adatechbr/"
+                                                                           =
+                                    target=3D"_blank"
+                                                                           =
+                                    style=3D"mso-line-height-rule: exactly;=
+ -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                    <img
+                                                                           =
+                                       src=3D"https://cdn-images.mailchimp.=
+com/icons/social-block-v2/outline-dark-linkedin-48.png"
+                                                                           =
+                                       alt=3D"LinkedIn"
+                                                                           =
+                                       style=3D"display: block; border: 0; =
+height: auto; outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic;"
+                                                                           =
+                                       height=3D"24"
+                                                                           =
+                                       width=3D"24"
+                                                                           =
+                                       class=3D"" />
+                                                                           =
+                                 </a>
+                                                                           =
+                              </td>
+                                                                           =
+                           </tr>
+                                                                           =
+                        </tbody>
+                                                                           =
+                     </table>
+                                                                           =
+                  </td>
+                                                                           =
+               </tr>
+                                                                           =
+            </tbody>
+                                                                           =
+         </table>
+                                                                           =
+      </td>
+                                                                           =
+   </tr>
+                                                                           =
+</tbody>
+                                                                        </t=
+able>
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               </td>
+                                                                           =
+               <![endif]-->
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               <td align=3D"center" valign=3D"top">
+                                                                           =
+                  <![endif]-->
+                                                                        <ta=
+ble align=3D"left" border=3D"0" cellpadding=3D"0"
+                                                                           =
+cellspacing=3D"0"
+                                                                           =
+style=3D"display: inline; border-collapse: collapse; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjus=
+t: 100%;">
+                                                                           =
+<tbody>
+                                                                           =
+   <tr>
+                                                                           =
+      <td valign=3D"top"
+                                                                           =
+         style=3D"padding-right: 0; padding-bottom: 9px; mso-line-height-ru=
+le: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
+                                                                           =
+         class=3D"mcnFollowContentItemContainer">
+                                                                           =
+         <table border=3D"0" cellpadding=3D"0"
+                                                                           =
+            cellspacing=3D"0" width=3D"100%"
+                                                                           =
+            class=3D"mcnFollowContentItem"
+                                                                           =
+            style=3D"border-collapse: collapse; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%;">
+                                                                           =
+            <tbody>
+                                                                           =
+               <tr>
+                                                                           =
+                  <td align=3D"left"
+                                                                           =
+                     valign=3D"middle"
+                                                                           =
+                     style=3D"padding-top: 5px; padding-right: 10px; paddin=
+g-bottom: 5px; padding-left: 9px; mso-line-height-rule: exactly; -ms-text-s=
+ize-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                     <table align=3D"left"
+                                                                           =
+                        border=3D"0"
+                                                                           =
+                        cellpadding=3D"0"
+                                                                           =
+                        cellspacing=3D"0"
+                                                                           =
+                        width=3D""
+                                                                           =
+                        style=3D"border-collapse: collapse; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%;">
+                                                                           =
+                        <tbody>
+                                                                           =
+                           <tr>
+                                                                           =
+                              <td align=3D"center"
+                                                                           =
+                                 valign=3D"middle"
+                                                                           =
+                                 width=3D"24"
+                                                                           =
+                                 class=3D"mcnFollowIconContent"
+                                                                           =
+                                 style=3D"mso-line-height-rule: exactly; -m=
+s-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                 <a href=3D"https://www.youtube.com/channel=
+/UCLsThfULvRqd47evoMVxhRQ"
+                                                                           =
+                                    target=3D"_blank"
+                                                                           =
+                                    style=3D"mso-line-height-rule: exactly;=
+ -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                                                                           =
+                                    <img
+                                                                           =
+                                       src=3D"https://cdn-images.mailchimp.=
+com/icons/social-block-v2/outline-dark-youtube-48.png"
+                                                                           =
+                                       alt=3D"YouTube"
+                                                                           =
+                                       style=3D"display: block; border: 0; =
+height: auto; outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic;"
+                                                                           =
+                                       height=3D"24"
+                                                                           =
+                                       width=3D"24"
+                                                                           =
+                                       class=3D"" />
+                                                                           =
+                                 </a>
+                                                                           =
+                              </td>
+                                                                           =
+                           </tr>
+                                                                           =
+                        </tbody>
+                                                                           =
+                     </table>
+                                                                           =
+                  </td>
+                                                                           =
+               </tr>
+                                                                           =
+            </tbody>
+                                                                           =
+         </table>
+                                                                           =
+      </td>
+                                                                           =
+   </tr>
+                                                                           =
+</tbody>
+                                                                        </t=
+able>
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+               </td>
+                                                                           =
+               <![endif]-->
+                                                                        <!-=
+-[if mso]>
+                                                                           =
+            </tr>
+                                                                           =
+         </table>
+                                                                           =
+         <![endif]-->
+                                                                     </td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+               <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                     </tr>
+                  </table>
+                  <![endif]-->
+               <!-- // END TEMPLATE -->
+            </td>
+         </tr>
+      </table>
+   </center>
+</body>
+
+</html>

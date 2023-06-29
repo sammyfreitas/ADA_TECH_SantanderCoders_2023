@@ -1,0 +1,54 @@
+Tabela ASCII
+https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
+
+Drive da aula:
+https://lms.ada.tech/student/classroom-drive/by-module-id/e636d399-ab53-4d49-9531-54ca0f5209e6/lecture-folders
+
+
+
+
+Treinando: 
+----------
+Escreva um programa em python que receba o nome, idade e hobby e escreava uma sentença de saída:: "Oi, meu nome é (varivel nome), tenho (variavel idade) anos e meu hobby é (variavel hobby)
+
+nome = input("Digite seu nome: ")
+idade = input("Digite sua idade: ")
+hobby = input("Digite seu hobby: ")
+print(f"Oi, meu nome é {nome}, tenho {idade} anos e meu hobby é {hobby}.")
+
+
+EXERCÍCIOS
+-----------
+
+1. Imagine que você está implementando um sistema para verificar se os alunos de uma turma estudantil passaram na disciplina ou não. Para isso solicite que o usuário insira as notas das 4 provas realizadas por um estudante e calcule a média. Após isso, emita uma resposta booleana (True ou False) se o estudante passou na disciplina pensando que a média mínima para aprovação é que seja pelo menos 5.
+
+nota1 = float(input("Digite a nota da primeira prova: "))
+nota2 = float(input("Digite a nota da segunda prova: "))
+nota3 = float(input("Digite a nota da terceira prova: "))
+nota4 = float(input("Digite a nota da quarta prova: "))
+media = (nota1 + nota2 + nota3 + nota4) / 4
+resp = media >= 5
+print(resp)
+
+
+2. Crie um algoritmo que calcule o IMC (índice de massa corporal). O IMC é calculado com a formula PESO/(ALTURA ^ 2). Para isso, coloque as informações nas variáveis e ao final apresente o resultado como no exemplo: "O IMC é 18"
+
+peso = float(input("Digite o peso em kg: "))
+altura = float(input("Digite a altura em metros: "))
+imc = peso / (altura ** 2)
+print("O IMC é {:.2f}".format(imc))
+
+
+3. Escreva um algoritmo que calcule (x + y) * (x + y). Os valores de x e y devem ser inseridos pelo usuário
+
+x = float(input("Digite o valor de x: "))
+y = float(input("Digite o valor de y: "))
+expressao = (x + y) * (x + y)
+print("O resultado é {:.2f}".format(expressao))
+
+Não arredondar (round(x,2)) para não perder informações. usar a formatação:
+print ("texto {:.2f}".format(variavel))
+
+*% 
+PARA DEBUGAR APENAS UM PEDAÇO DO CÓDIGO
+*%

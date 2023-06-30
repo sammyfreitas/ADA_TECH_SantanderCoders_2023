@@ -1,0 +1,65 @@
+AULA 4 29/06/23
+# Listas, Índices, Iterações de listas, Métodos de listas
+Listas são coleções de objetos em Python e é expressada em `[]
+
+Existem várias outras funções/métodos de listas que vocês irão no próximo módulo, como:\n",
+    "- insert\n",
+    "- remove\n",
+    "- pop\n",
+    "- sorted\n",
+    "- reverse\n",
+    "- index\n",
+    "- max, min, len
+	
+Maneiras de percorrer uma lista\n",
+    "numeros = [1, 3, 5, 7, 9]\n",
+- Usando while
+	Pros: Eu sei não só o elemento mas sei o indice também
+	Contra: Eu preciso controlar o indice
+
+contador = 0
+while (contador < len(numeros)):
+    print(numeros[contador])\n",
+    contador = contador + 1  Se eu esquecer essa linha\n",
+
+- Jeito intermediario: for in range
+	Pros: Sei o indice, não preciso controlar o loop  \n",
+    Contra: Precisa saber usar a função range  \n",
+range(5) ->  [0, 1, 2, 3, 4]
+
+numeros = [1, 3, 5, 7, 9]
+for indice in range(len(numeros)):
+    print(numeros[indice])\n",
+
+- Usando só for
+    Pros: não preciso me preocupar com o indice
+    Contra: não sei indice
+numeros = [1, 3, 5, 7, 9]\n",
+for numero in numeros:  #numero é uma especie de variavel temporaria
+    print(numero)
+	
+	
+	
+"Exercícios"
+
+1. Crie uma lista qualquer e faça um programa que imprima cada elemento da lista usando o for.
+
+2. Faça um programa que imprima todos os itens de uma lista usando while e compare com o exercício 1.
+
+3. Faça um programa que peça para o usuário digitar um número n e imprima uma lista com todos os números de 0 a n-1.
+
+4. Faça um programa que olhe todos os itens de uma lista e diga quantos deles são pares. 
+
+5. Faça um programa que imprima o maior número de uma lista, sem usar o método max().
+
+6. Agora usando o método max() faça um programa que imprima os três maiores números de uma lista.
+
+7. Faça um programa que, dadas duas listas de mesmo tamanho, crie uma nova lista com cada elemento igual a soma dos elementos da lista 1 com os da lista 2, na mesma posição.
+
+8. Faça um programa que dadas duas listas de mesmo tamanho, imprima o produto escalar entre elas.
+
+9. Faça um programa que pede para o usuário digitar 5 números e, ao final, imprime uma lista com os 5 números digitados pelo usuário (sem converter os números para int ou float).
+
+10. Pegue a lista gerada no exercício anterior e transforme cada um dos itens dessa lista em um float.
+
+11. Faça um Programa que peça as 4 notas bimestrais e mostre a média, usando listas.
